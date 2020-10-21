@@ -1,0 +1,17 @@
+<mat-card *ngFor="let book of books" class="book-card mat-elevation-z10">
+    <mat-card-header>
+
+        <mat-card-title>{{book.description}}</mat-card-title>
+
+    </mat-card-header>
+    <img mat-card-image [src]="book.iconUrl">
+    <mat-card-content>
+        <p>{{book.bookLongDescription}}</p>
+    </mat-card-content>
+
+    <mat-card-actions class="book-actions">
+        <button mat-button class="mat-raised-button mat-primary" [routerLink]="['/books',book.id]">
+            VIEW BOOK
+        </button>
+    </mat-card-actions>
+</mat-card>

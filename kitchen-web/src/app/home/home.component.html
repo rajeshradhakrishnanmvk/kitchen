@@ -1,0 +1,16 @@
+<div class="books-panel">
+    <h3> All Genres</h3>
+
+    <mat-tab-group>
+        <mat-tab label="Poetry">
+            <book-card-list [books]="poetryGenres$ | async">
+
+            </book-card-list>
+        </mat-tab>
+        <mat-tab label="Novel">
+            <book-card-list [books]="novelGenres$ | async">
+
+            </book-card-list>
+        </mat-tab>
+    </mat-tab-group>
+</div>

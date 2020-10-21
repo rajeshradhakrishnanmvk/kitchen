@@ -1,0 +1,9 @@
+
+# general app values
+team: BhadraStores
+app:
+  image: kitchen-ui:local
+  env:
+    PORT: 5000
+  domain: kitchen.k3d.localhost
+  port: 5000
