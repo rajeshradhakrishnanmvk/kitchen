@@ -30,7 +30,7 @@ export class BookDialogComponent implements OnInit {
 
     this.form = fb.group({
       id: [data.id],
-      name: [name, Validators.required],
+      name: [data.name, Validators.required],
       description: [data.description, Validators.required],
       category: [data.category, Validators.required],
       releasedAt: [moment(), Validators.required],
@@ -44,29 +44,28 @@ export class BookDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  // save() {
-  //   this.bookService.editBook(this.form.value as Book).subscribe(editCategory => {
-  //     this.dialogRef.close(editCategory);
-  //   },
-  //     error => {
-  //       if (404 === error.status) {
-  //         this.errMessage = error.message;
-  //       } else {
-  //         this.errMessage = error.message;
-  //       }
-  //     });
-  //   this.dialogRef.close(this.form.value);
-  // }
 
   close() {
     this.dialogRef.close();
   }
 
   onSave() {
-    // this.book.createdBy = "FrontEnd";
-    // this.book.creationDate = new Date();
+
+    this.book = new Book();
+    this.book.id = +this.form.value.id;
+    this.book.name = this.form.value.name;
+    this.book.description = this.form.value.description;
+    this.book.iconUrl = this.form.value.iconUrl;
+    this.book.bookListIcon = this.form.value.bookListIcon
+    this.book.bookLongDescription = this.form.value.bookLongDescription
+    this.book.category = this.form.value.category
+    this.book.chapterCount = +this.form.value.chapterCount
+    this.book.releasedAt = this.form.value.releasedAt.toDate();
+    this.book.createdBy = "FrontEnd";
+    this.book.creationDate = new Date();
+
     if (this.form.value.id == 0) {
-      this.bookService.addBook(this.form.value).subscribe(addBook => {
+      this.bookService.addBook(this.book).subscribe(addBook => {
         this.dialogRef.close(addBook);
       },
         error => {
@@ -76,10 +75,10 @@ export class BookDialogComponent implements OnInit {
             this.errMessage = error.message;
           }
         });
-      this.dialogRef.close(this.form.value);
+      this.dialogRef.close(this.book);
     }
     else {
-      this.bookService.editBook(this.form.value).subscribe(editBook => {
+      this.bookService.editBook(this.book).subscribe(editBook => {
         this.dialogRef.close(editBook);
       },
         error => {
@@ -89,7 +88,7 @@ export class BookDialogComponent implements OnInit {
             this.errMessage = error.message;
           }
         });
-      this.dialogRef.close(this.form.value);
+      this.dialogRef.close(this.book);
     }
   }
 }

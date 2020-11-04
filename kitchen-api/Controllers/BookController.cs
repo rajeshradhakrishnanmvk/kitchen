@@ -1,9 +1,10 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 using kitchen_api.Service;
 using kitchen_api.Models;
 using kitchen_api.Extensions;
-using Microsoft.AspNetCore.Authorization;
-
 
 namespace kitchen_api.Controllers
 {
@@ -14,21 +15,26 @@ namespace kitchen_api.Controllers
     public class BookController : Controller
     {
         private readonly IBookService service;
-
-        public BookController(IBookService _service)
+        private readonly ILogger _logger;
+        public BookController(IBookService _service, ILogger<BookController> logger)
         {
             this.service = _service;
+            this._logger = logger;
         }
         // GET: api/<controller>
         [HttpGet]
         public IActionResult Get()
         {
+            string Message = $"Book API GET visited at {DateTime.UtcNow.ToLongTimeString()}";
+            _logger.LogInformation(Message);
             return Ok(new { payload = service.GetBooks() });
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+             string Message = $"Book API GET with id visited at {DateTime.UtcNow.ToLongTimeString()}";
+            _logger.LogInformation(Message);
             return Ok(service.GetBookById(id));
         }
 
@@ -37,6 +43,8 @@ namespace kitchen_api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Book value)
         {
+            string Message = $"Book API GET with id visited at {DateTime.UtcNow.ToLongTimeString()}";
+            _logger.LogInformation(Message);
             Book BookResult = service.CreateBook(value);
             return Created("", BookResult);
         }

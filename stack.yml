@@ -1,10 +1,28 @@
 version: 1.0
 provider:
   name: openfaas
-  gateway: http://127.0.0.1:8080
+  gateway: http://9f591d11-f4fb-4142-880a-e74e27283fbb.k8s.civo.com:31112
+  #gateway: http://127.0.0.1:8080
+  #gateway: http://9f591d11-f4fb-4142-880a-e74e27283fbb.k8s.civo.com:31112
 functions:
-  api:
+  kitchen-api:
     lang: dockerfile
     handler: ./kitchen-api
-    image: 15091983/api:latest
-
+    image: 15091983/kitchen-api:latest
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      PORT: 8080
+      mongo_endpoint: hLfr9jmt9CmZrsBvizBh2yom9De8cu:aHJvW8frImLm6LAYHD2dleuDtnNVaq@mongodb:27017/test?authSource=admin
+      mongo_database_name: kitchen
+      mongo_collection_name: book
+      read_timeout: 20
+      write_timeout: 20
+      exec_timeout: 2h
+    secrets:
+      - db
+  # web:
+  #   lang: dockerfile
+  #   handler: ./kitchen-web
+  #   image: 15091983/web:latest
+  #   environment:
+  #     PORT: 80

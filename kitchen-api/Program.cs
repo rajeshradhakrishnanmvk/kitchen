@@ -18,13 +18,18 @@ namespace kitchen_api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>()
-                        .UseKestrel(options =>
-                        {
-                            options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
-                        });
+                    webBuilder.UseStartup<Startup>();
+                        // .UseKestrel(options =>
+                        // {
+                        //     options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
+                        // });
                 });
     }
 }

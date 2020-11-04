@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using kitchen_api.Models;
 using kitchen_api.Repository;
 using kitchen_api.Exceptions;
@@ -9,14 +10,16 @@ namespace kitchen_api.Service
     public class BookService : IBookService
     {
         private readonly IBookRepository repository;
-
-        public BookService(IBookRepository BookRepository)
+        private readonly ILogger _logger;
+        public BookService(IBookRepository BookRepository, ILogger<BookService> logger)
         {
             repository = BookRepository;
         }
 
         public Book CreateBook(Book Book)
         {
+             string Message = $"BookService method CreateBook call at {DateTime.UtcNow.ToLongTimeString()}";
+            _logger.LogInformation(Message);
             Book createdUser = repository.CreateBook(Book);
             if (createdUser != null)
             {
