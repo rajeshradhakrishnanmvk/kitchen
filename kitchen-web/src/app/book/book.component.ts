@@ -6,7 +6,7 @@ import { debounceTime, distinctUntilChanged, startWith, tap, delay } from 'rxjs/
 import { merge, fromEvent } from "rxjs";
 import { Book } from "../model/book";
 import { BooksService } from "../services/books.service";
-import { GenreDatasource } from "../services/genre.datasource";
+import { ChapterDatasource } from "../services/chapter.datasource";
 
 
 @Component({
@@ -18,7 +18,7 @@ export class BookComponent implements OnInit, AfterViewInit {
 
   book: Book;
 
-  dataSource: GenreDatasource;
+  dataSource: ChapterDatasource;
 
   displayedColumns = ["seqNo", "description", "duration"];
 
@@ -35,9 +35,9 @@ export class BookComponent implements OnInit, AfterViewInit {
 
     this.book = this.route.snapshot.data["book"];
 
-    this.dataSource = new GenreDatasource(this.bookService);
+    this.dataSource = new ChapterDatasource(this.bookService);
 
-    this.dataSource.loadGenres(this.book.id, '', 'asc', 0, 3);
+    this.dataSource.loadChapters(this.book.id, '', 'asc', 0, 3);
 
   }
 
@@ -51,7 +51,7 @@ export class BookComponent implements OnInit, AfterViewInit {
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-          this.loadGenrePage()
+          this.loadChapterPage()
         })
       )
       .subscribe();
@@ -62,13 +62,13 @@ export class BookComponent implements OnInit, AfterViewInit {
     //on sort or paginate events, load a new page
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
-        tap(() => this.loadGenrePage())
+        tap(() => this.loadChapterPage())
 
       )
       .subscribe();
   }
-  loadGenrePage() {
-    this.dataSource.loadGenres(
+  loadChapterPage() {
+    this.dataSource.loadChapters(
       this.book.id,
       this.input.nativeElement.value,
       this.sort.direction,

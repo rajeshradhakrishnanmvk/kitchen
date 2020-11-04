@@ -2,11 +2,11 @@
 
     <h2>{{book?.description}}</h2>
 
-    <img class="book-thumbnail" [src]="book?.iconUrl">
+    <!-- <img class="book-thumbnail" [src]="book?.iconUrl"> -->
 
     <mat-form-field>
 
-        <input matInput placeholder="Search Genre" #input>
+        <input matInput placeholder="Search Chapter" #input>
 
     </mat-form-field>
 
@@ -21,15 +21,15 @@
 
         <ng-container matColumnDef="seqNo">
             <mat-header-cell *matHeaderCellDef mat-sort-hdear>#</mat-header-cell>
-            <mat-cell *matCellDef="let genre">{{genre.seqNo}}</mat-cell>
+            <mat-cell *matCellDef="let chapter">{{chapter.seqNo}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef mat-sort-hdear>Description</mat-header-cell>
-            <mat-cell *matCellDef="let genre">{{genre.description}}</mat-cell>
+            <mat-cell *matCellDef="let chapter">{{chapter.description}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="duration">
             <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
-            <mat-cell class="duration-cell" *matCellDef="let genre">{{genre.duration}}</mat-cell>
+            <mat-cell class="duration-cell" *matCellDef="let chapter">{{chapter.duration}}</mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -37,5 +37,5 @@
 
     </mat-table>
 
-    <mat-paginator [length]="book?.genreCount" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+    <mat-paginator [length]="book?.chapterCount" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
 </div>

@@ -32,6 +32,7 @@ import { BookCardListComponent } from './book-card-list/book-card-list.component
 import { BookDialogComponent } from './book-dialog/book-dialog.component'
 import { BooksService } from './services/books.service';
 import { BooksResolver } from './services/books.resolver';
+import { CreateBookOpenerComponent } from './create-book-opener/create-book-opener.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { BooksResolver } from './services/books.resolver';
     BookComponent,
     BookCardListComponent,
     BookDialogComponent,
+    CreateBookOpenerComponent,
   ],
   imports: [
     BrowserModule,

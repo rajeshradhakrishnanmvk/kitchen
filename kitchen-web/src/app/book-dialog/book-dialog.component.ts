@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Book } from "../model/book";
 import * as moment from "moment";
+import { BooksService } from '../services/books.service';
+import { BookComponent } from '../book/book.component';
 
 @Component({
   selector: 'book-dialog',
@@ -13,30 +15,81 @@ export class BookDialogComponent implements OnInit {
 
   form: FormGroup;
   description: string;
+  book: Book;
+  errMessage: string;
 
   constructor(
+    private bookService: BooksService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<BookDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) { description, bookLongDescription, category }: Book) {
-
-    this.description = description;
+    @Inject(MAT_DIALOG_DATA) private data: any) {
+    if (data.id == 0) {
+      data = new Book();
+    }
+    this.description = data.description;
 
     this.form = fb.group({
-      description: [description, Validators.required],
-      category: [category, Validators.required],
+      id: [data.id],
+      name: [name, Validators.required],
+      description: [data.description, Validators.required],
+      category: [data.category, Validators.required],
       releasedAt: [moment(), Validators.required],
-      longDescription: [bookLongDescription, Validators.required]
+      iconUrl: [data.iconUrl, Validators.required],
+      bookListIcon: [data.bookListIcon, Validators.required],
+      bookLongDescription: [data.bookLongDescription, Validators.required],
+      chapterCount: [data.chapterCount, Validators.required],
     });
   }
 
   ngOnInit() {
   }
 
-  save() {
-    this.dialogRef.close(this.form.value);
-  }
+  // save() {
+  //   this.bookService.editBook(this.form.value as Book).subscribe(editCategory => {
+  //     this.dialogRef.close(editCategory);
+  //   },
+  //     error => {
+  //       if (404 === error.status) {
+  //         this.errMessage = error.message;
+  //       } else {
+  //         this.errMessage = error.message;
+  //       }
+  //     });
+  //   this.dialogRef.close(this.form.value);
+  // }
 
   close() {
     this.dialogRef.close();
+  }
+
+  onSave() {
+    // this.book.createdBy = "FrontEnd";
+    // this.book.creationDate = new Date();
+    if (this.form.value.id == 0) {
+      this.bookService.addBook(this.form.value).subscribe(addBook => {
+        this.dialogRef.close(addBook);
+      },
+        error => {
+          if (404 === error.status) {
+            this.errMessage = error.message;
+          } else {
+            this.errMessage = error.message;
+          }
+        });
+      this.dialogRef.close(this.form.value);
+    }
+    else {
+      this.bookService.editBook(this.form.value).subscribe(editBook => {
+        this.dialogRef.close(editBook);
+      },
+        error => {
+          if (404 === error.status) {
+            this.errMessage = error.message;
+          } else {
+            this.errMessage = error.message;
+          }
+        });
+      this.dialogRef.close(this.form.value);
+    }
   }
 }

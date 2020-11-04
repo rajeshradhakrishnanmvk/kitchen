@@ -2,7 +2,7 @@ using System;
 using MongoDB.Bson.Serialization.Attributes;
 namespace kitchen_api.Models
 {
-    public class Genre
+    public class Chapter
     {
         [BsonId]
         public int Id { get; set; }

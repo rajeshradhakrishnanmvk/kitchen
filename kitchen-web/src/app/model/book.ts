@@ -1,4 +1,4 @@
-export interface Book {
+export class Book {
     id: number;
     name: string;
     description: string;
@@ -6,7 +6,20 @@ export interface Book {
     bookListIcon: string;
     bookLongDescription: string;
     category: string;
-    genreCount: number;
+    chapterCount: number;
+    releasedAt: Date;
     createdBy: string;
     creationDate: Date;
+    constructor() {
+        this.name = '';
+        this.description = '';
+        this.iconUrl = '';
+        this.bookListIcon = '';
+        this.bookLongDescription = '';
+        this.category = '';
+        this.chapterCount = 0;
+        this.releasedAt = new Date();
+        this.createdBy = 'FrontEnd';
+        this.creationDate = new Date();
+    }
 }

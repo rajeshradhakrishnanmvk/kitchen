@@ -14,11 +14,11 @@ namespace kitchen_api.Controllers
     //[Authorize]
     [ExceptionHandler]
     [Route("api/[controller]")]
-    public class GenreController : Controller
+    public class ChapterController : Controller
     {
-        private readonly IGenreService service;
+        private readonly IChapterService service;
 
-        public GenreController(IGenreService _service)
+        public ChapterController(IChapterService _service)
         {
             this.service = _service;
         }
@@ -27,53 +27,53 @@ namespace kitchen_api.Controllers
         [HttpGet()]
         public IActionResult Get()
         {
-            return Ok(service.GetGenre());
+            return Ok(service.GetChapter());
         }
-        [HttpGet("GetGenre")]
-        public IActionResult GetGenre(int bookId, string filter, string sortOrder, int pageNumber, int pageSize)
+        [HttpGet("GetChapter")]
+        public IActionResult GetChapter(int bookId, string filter, string sortOrder, int pageNumber, int pageSize)
         {
-            List<Genre> genres = service.GetGenre().Where(b => b.Book.Id == bookId).ToList();
+            List<Chapter> Chapters = service.GetChapter().Where(b => b.Book.Id == bookId).ToList();
             if (!String.IsNullOrEmpty(filter))
             {
-                genres = genres.Where(s => s.Description.Contains(filter)
+                Chapters = Chapters.Where(s => s.Description.Contains(filter)
                                     || s.Description.Contains(filter)).ToList();
             }
             switch (sortOrder)
             {
                 case "desc":
-                    genres = genres.OrderByDescending(s => s.Id).ToList();
+                    Chapters = Chapters.OrderByDescending(s => s.Id).ToList();
                     break;
                 case "asc":
-                    genres = genres.OrderBy(s => s.Id).ToList();
+                    Chapters = Chapters.OrderBy(s => s.Id).ToList();
                     break;
                 default:
-                    genres = genres.OrderBy(s => s.Id).ToList();
+                    Chapters = Chapters.OrderBy(s => s.Id).ToList();
                     break;
             }
             int initialPos = pageNumber * pageSize;
-            return Ok(new { payload = genres.Skip(initialPos).Take(initialPos + pageSize) });
+            return Ok(new { payload = Chapters.Skip(initialPos).Take(initialPos + pageSize) });
         }
         // GET: api/<controller>
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(service.GetGenreById(id));
+            return Ok(service.GetChapterById(id));
         }
 
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Post([FromBody] Genre value)
+        public IActionResult Post([FromBody] Chapter value)
         {
-            Genre GenreResult = service.CreateGenre(value);
-            return Created("", GenreResult);
+            Chapter ChapterResult = service.CreateChapter(value);
+            return Created("", ChapterResult);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Genre value)
+        public IActionResult Put(int id, [FromBody] Chapter value)
         {
-            service.UpdateGenre(id, value);
+            service.UpdateChapter(id, value);
             return Ok(value);
         }
 
@@ -81,7 +81,7 @@ namespace kitchen_api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok(service.DeleteGenre(id));
+            return Ok(service.DeleteChapter(id));
         }
     }
 }

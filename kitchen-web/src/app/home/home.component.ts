@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Genre } from "../model/genre";
 import { Observable } from "rxjs";
-import { BooksService } from "../services/books.service";
 import { map } from "rxjs/operators"
+import { Router } from '@angular/router';
+import { BooksService } from "../services/books.service";
 import { Book } from '../model/book';
+
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,13 @@ import { Book } from '../model/book';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  poetryGenres$: Observable<Book[]>;
+  poetryChapters$: Observable<Book[]>;
 
-  novelGenres$: Observable<Book[]>;
+  novelChapters$: Observable<Book[]>;
 
-  constructor(private booksService: BooksService) { }
+  constructor(
+    private router: Router
+    , private booksService: BooksService) { }
 
   ngOnInit() {
 
@@ -23,15 +26,22 @@ export class HomeComponent implements OnInit {
 
     //books$.subscribe(x => console.log(x));
 
-    this.poetryGenres$ = books$.pipe(
-      map(books => books.filter(book => book.category === 'Poem'))
+    this.poetryChapters$ = books$.pipe(
+      map(books => books.filter(book => book.category === 'Poetry'))
     );
-    //this.poetryGenres$.subscribe(x => console.log(x));
+    //this.poetryChapters$.subscribe(x => console.log(x));
 
-    this.novelGenres$ = books$.pipe(
+    this.novelChapters$ = books$.pipe(
       map(books => books.filter(book => book.category === 'Novel'))
     );
-    //this.novelGenres$.subscribe(x => console.log(x));
+    //this.novelChapters$.subscribe(x => console.log(x));
   }
-
+  addBook(bookId: Number) {
+    this.router.navigate(['book',
+      {
+        outlets: {
+          bookEditOutlet: ['book', bookId]
+        }
+      }]);
+  }
 }

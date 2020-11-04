@@ -13,5 +13,8 @@
         <button mat-button class="mat-raised-button mat-primary" [routerLink]="['/books',book.id]">
             VIEW BOOK
         </button>
+        <button mat-button class="mat-raised-button mat-accent" (click)="editBook(book)">
+            EDIT
+        </button>
     </mat-card-actions>
 </mat-card>

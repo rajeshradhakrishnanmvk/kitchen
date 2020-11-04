@@ -1,4 +1,4 @@
-export interface Genre {
+export interface Chapter {
     id: number;
     name: string;
     description: string;

@@ -31,9 +31,9 @@ namespace kitchen_api
         {
             services.AddControllers();
             services.AddCors();
-            services.AddScoped<IGenreService, Service.GenreService>();
-            services.AddScoped<IGenreContext, GenreContext>();
-            services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<IChapterService, Service.ChapterService>();
+            services.AddScoped<IChapterContext, ChapterContext>();
+            services.AddScoped<IChapterRepository, ChapterRepository>();
             services.AddScoped<IBookService, Service.BookService>();
             services.AddScoped<IBookContext, BookContext>();
             services.AddScoped<IBookRepository, BookRepository>();

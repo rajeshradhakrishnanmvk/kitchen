@@ -4,17 +4,17 @@ using MongoDB.Driver;
 
 namespace kitchen_api.Models
 {
-    public class GenreContext : IGenreContext
+    public class ChapterContext : IChapterContext
     {
         private readonly IMongoDatabase database;
         MongoClient client;
 
-        public GenreContext(IConfiguration configuration)
+        public ChapterContext(IConfiguration configuration)
         {
             client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
             database = client.GetDatabase(configuration.GetSection("MongoDB:Database").Value);
         }
 
-        public IMongoCollection<Genre> Genres => database.GetCollection<Genre>("genre");
+        public IMongoCollection<Chapter> Chapters => database.GetCollection<Chapter>("genre");
     }
 }
