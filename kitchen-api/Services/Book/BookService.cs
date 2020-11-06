@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using kitchen_api.Models;
@@ -14,6 +15,7 @@ namespace kitchen_api.Service
         public BookService(IBookRepository BookRepository, ILogger<BookService> logger)
         {
             repository = BookRepository;
+             _logger = logger;
         }
 
         public Book CreateBook(Book Book)

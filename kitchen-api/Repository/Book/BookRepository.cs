@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
@@ -14,6 +15,7 @@ namespace kitchen_api.Repository
         public BookRepository(IBookContext dbContext, ILogger<BookRepository> logger)
         {
             context = dbContext;
+            _logger = logger;
         }
 
         public Book CreateBook(Book Book)
@@ -29,13 +31,13 @@ namespace kitchen_api.Repository
             //If Present increment by 1
             Book.Id = lastBook != null ? lastBook.Id + 1 : 100;
             context.Books.InsertOne(Book);
-            return Book;
+            
             }
             catch(Exception oex)
             {
                 _logger.LogInformation("Error in BookRepository " + oex.Message);
             }
-           
+           return Book;
         }
 
         public bool DeleteBook(int BookId)
@@ -59,13 +61,16 @@ namespace kitchen_api.Repository
         {
             string Message = $"BookRepository method CreateBook call at {DateTime.UtcNow.ToLongTimeString()}";
             _logger.LogInformation(Message);
+             List<Book> books = null;
            try{
-               return context.Books.Find(_ => true).ToList();
+               
+               books = context.Books.Find(_ => true).ToList();
            }
             catch(Exception oex)
             {
                 _logger.LogInformation("Error in BookRepository " + oex.Message);
             }
+            return books;
             
         }
         public bool UpdateBook(int BookId, Book Book)

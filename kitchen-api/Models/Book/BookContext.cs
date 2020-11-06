@@ -14,13 +14,13 @@ namespace kitchen_api.Models
         public BookContext(IConfiguration configuration, ILogger<BookContext> logger)
         {
             try{
-            //client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
-            //database = client.GetDatabase(configuration.GetSection("MongoDB:Database").Value);
+            client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
+            database = client.GetDatabase(configuration.GetSection("MongoDB:Database").Value);
             this._logger = logger;
-            client = new MongoClient(string.Format("mongodb://{0}", Environment.GetEnvironmentVariable("mongo_endpoint")));
-            var databaseName = Environment.GetEnvironmentVariable("mongo_database_name") ?? "kitchen";
-            database = client.GetDatabase(databaseName);
-            _logger.LogInformation("Database connected to " + databaseName);
+            // client = new MongoClient(string.Format("mongodb://{0}", Environment.GetEnvironmentVariable("mongo_endpoint")));
+            // var databaseName = Environment.GetEnvironmentVariable("mongo_database_name") ?? "kitchen";
+            // database = client.GetDatabase(databaseName);
+            _logger.LogInformation("Database connected to: " + configuration.GetSection("MongoDB:ConnectionString").Value);
             // var collectionName = Environment.GetEnvironmentVariable("mongo_collection_name") ?? "book";
             // Collection = Database.GetCollection<BsonDocument>(collectionName);
             }
