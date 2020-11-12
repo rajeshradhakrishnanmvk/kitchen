@@ -355,3 +355,6 @@ kitchen-web/dist
 template
 build
 Data
+raj-kitchen-civo
+raj-kitchen-civo.*
+appsettings.secrets.json

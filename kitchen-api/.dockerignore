@@ -1,3 +1,6 @@
 Dockerfile
 [b|B]in
 [O|o]bj
+template
+build
+appsettings.secrets.json

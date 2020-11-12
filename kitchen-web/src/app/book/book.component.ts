@@ -20,7 +20,7 @@ export class BookComponent implements OnInit, AfterViewInit {
 
   dataSource: ChapterDatasource;
 
-  displayedColumns = ["seqNo", "description", "duration"];
+  displayedColumns = ["id", "name", "description", "duration", "actions"];
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
@@ -76,5 +76,12 @@ export class BookComponent implements OnInit, AfterViewInit {
       this.paginator.pageSize
     )
   }
+  addNew() {
+  }
+  editChapter() {
 
+  }
+  deleteChapter() {
+
+  }
 }

@@ -1,2 +1,3 @@
 template
 build
+appsettings.secrets.json

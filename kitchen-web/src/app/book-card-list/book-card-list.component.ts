@@ -34,5 +34,7 @@ export class BookCardListComponent implements OnInit {
       val => console.log("Dialog output:", val)
     );
   }
+  deleteBook(bookId: Number) {
 
+  }
 }

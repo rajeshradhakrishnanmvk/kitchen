@@ -40,3 +40,10 @@
 .spinner-container mat-spinner{
     margin: 130px auto 0 auto;
 }
+.no-results {
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+    font-size: 14px;
+    font-style: italic;
+  }
