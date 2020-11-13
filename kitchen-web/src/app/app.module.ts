@@ -21,26 +21,27 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatDatepickerModule } from "@angular/material/datepicker"
 import { MatSelectModule } from "@angular/material/select";
 import { HttpClientModule } from "@angular/common/http"
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { BookComponent } from './book/book.component';
+import { ChapterComponent } from './chapter/chapter.component';
 import { BookCardListComponent } from './book-card-list/book-card-list.component';
 import { BookDialogComponent } from './book-dialog/book-dialog.component'
 import { BooksService } from './services/books.service';
 import { BooksResolver } from './services/books.resolver';
 import { CreateBookOpenerComponent } from './create-book-opener/create-book-opener.component';
 import { ChapterDialogComponent } from './chapter-dialog/chapter-dialog.component';
+import { ChapterService } from './services/chapter.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    BookComponent,
+    ChapterComponent,
     BookCardListComponent,
     BookDialogComponent,
     CreateBookOpenerComponent,
@@ -67,13 +68,15 @@ import { ChapterDialogComponent } from './chapter-dialog/chapter-dialog.componen
     MatDatepickerModule,
     MatDialogModule,
     ReactiveFormsModule,
+    FormsModule,
     MatSelectModule,
     MatMomentDateModule
 
   ],
   providers: [
     BooksService,
-    BooksResolver
+    BooksResolver,
+    ChapterService
   ],
   bootstrap: [AppComponent],
   entryComponents: [BookDialogComponent]

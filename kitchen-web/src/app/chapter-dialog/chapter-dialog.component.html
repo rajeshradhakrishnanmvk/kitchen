@@ -1,1 +1,48 @@
-<p>chapter-dialog works!</p>
+<div class="container">
+    <h3 mat-dialog-title>Chapter Id: {{chapter.id}}</h3>
+
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formcontrol="ngForm">
+
+        <!-- <div class="form">
+            <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="chapter.id" name="id"
+                    required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div> -->
+        <div class="form">
+            <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Name" [(ngModel)]="chapter.name" name="name"
+                    required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field color="accent">
+                <textarea matInput #input class="form-control" placeholder="Description"
+                    [(ngModel)]="chapter.description" name="description" required></textarea>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field color="accent">
+                <input matInput #inputstate class="form-control" placeholder="SeqNo" [(ngModel)]="chapter.seqNo"
+                    name="seqno" maxlength="2" required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-hint align="end">{{inputstate.value?.length || 0}}/2</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Duration" [(ngModel)]="chapter.duration"
+                    name="duration" required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button [type]="submit" [mat-dialog-close]="1" (click)="onSave()">Save</button>
+            <button mat-button (click)="onClose()" tabindex="-1">Cancel</button>
+        </div>
+    </form>
+</div>

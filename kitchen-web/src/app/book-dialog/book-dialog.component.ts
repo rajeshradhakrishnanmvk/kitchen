@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Book } from "../model/book";
 import * as moment from "moment";
 import { BooksService } from '../services/books.service';
-import { BookComponent } from '../book/book.component';
+
 
 @Component({
   selector: 'book-dialog',

@@ -2,19 +2,21 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { ActivatedRoute } from "@angular/router";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
+import { MatDialog } from "@angular/material/dialog"
 import { debounceTime, distinctUntilChanged, startWith, tap, delay } from 'rxjs/operators';
 import { merge, fromEvent } from "rxjs";
 import { Book } from "../model/book";
 import { BooksService } from "../services/books.service";
 import { ChapterDatasource } from "../services/chapter.datasource";
-
+import { ChapterDialogComponent } from '../chapter-dialog/chapter-dialog.component';
+import { Chapter } from '../model/chapter';
 
 @Component({
-  selector: 'book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  selector: 'chapter',
+  templateUrl: './chapter.component.html',
+  styleUrls: ['./chapter.component.scss']
 })
-export class BookComponent implements OnInit, AfterViewInit {
+export class ChapterComponent implements OnInit, AfterViewInit {
 
   book: Book;
 
@@ -29,7 +31,8 @@ export class BookComponent implements OnInit, AfterViewInit {
   @ViewChild('input', { static: false }) input: ElementRef;
 
   constructor(private route: ActivatedRoute,
-    private bookService: BooksService) { }
+    private bookService: BooksService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -77,6 +80,10 @@ export class BookComponent implements OnInit, AfterViewInit {
     )
   }
   addNew() {
+
+    const dialogRef = this.dialog.open(ChapterDialogComponent, {
+      data: { chapter: new Chapter(this.book.id) }
+    });
   }
   editChapter() {
 

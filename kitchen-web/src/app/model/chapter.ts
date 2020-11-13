@@ -1,4 +1,4 @@
-export interface Chapter {
+export class Chapter {
     id: number;
     name: string;
     description: string;
@@ -7,4 +7,14 @@ export interface Chapter {
     bookId: number;
     createdBy: string;
     creationDate: Date;
+    constructor(bookId: number) {
+        this.id = 0;
+        this.name = '';
+        this.description = '';
+        this.duration = '';
+        this.seqNo = 0;
+        this.bookId = bookId;
+        this.createdBy = 'FrontEnd';
+        this.creationDate = new Date();
+    }
 }
