@@ -8,9 +8,10 @@ metadata:
        ingress.kubernetes.io/ssl-redirect: "false"
 spec:
     rules:
-    - host: kitchen.k3d.localhost
+    - host: 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
       http:
         paths:
-        - backend:
-            serviceName: kitchen-ui-web
+        - path: /
+          backend:
+            serviceName: kitchen-frontend-web
             servicePort: 80

@@ -15,6 +15,6 @@ namespace kitchen_api.Models
             database = client.GetDatabase(configuration.GetSection("MongoDB:Database").Value);
         }
 
-        public IMongoCollection<Chapter> Chapters => database.GetCollection<Chapter>("genre");
+        public IMongoCollection<Chapter> Chapters => database.GetCollection<Chapter>("chapter");
     }
 }

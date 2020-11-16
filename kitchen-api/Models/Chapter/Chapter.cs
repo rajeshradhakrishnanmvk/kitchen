@@ -4,11 +4,9 @@ namespace kitchen_api.Models
 {
     public class Chapter
     {
-        [BsonId]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
         public string Duration { get; set; }
         public int SeqNo { get; set; }
         public Book Book { get; set; }

@@ -2,8 +2,8 @@
 # general app values
 team: BhadraStores
 app:
-  image: kitchen-ui:local
+  image: 15091983/kitchen-web:latest
   env:
     PORT: 80
-  domain: kitchen.k3d.localhost
+  domain: 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
   port: 80

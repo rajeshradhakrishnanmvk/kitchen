@@ -44,13 +44,11 @@
             </mat-header-cell>
 
             <mat-cell *matCellDef="let chapter; let i=index;">
-                <button mat-icon-button color="accent"
-                    (click)="edit(i, chapter.id,chapter.name, chapter.description, chapter.duration)">
+                <button mat-icon-button color="accent" (click)="editChapter(i, chapter)">
                     <mat-icon aria-label="Edit">edit</mat-icon>
                 </button>
 
-                <button mat-icon-button color="accent"
-                    (click)="deleteItem(i, chapter.id, chapter.name, chapter.description, chapter.duration)">
+                <button mat-icon-button color="accent" (click)="deleteChapter(i, chapter)">
                     <mat-icon aria-label="Delete">delete</mat-icon>
                 </button>
             </mat-cell>

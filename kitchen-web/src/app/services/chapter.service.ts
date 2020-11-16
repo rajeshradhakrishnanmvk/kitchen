@@ -32,7 +32,7 @@ export class ChapterService {
   }
 
   deleteChapter(chapterId) {
-    return this.http.delete<Boolean>(this.serviceUrl + '/' + chapterId)
+    return this.http.delete<Boolean>(this.serviceUrl + '/api/Chapter/' + chapterId)
       .toPromise()
       .then(res => res)
       .catch(this.handleError<Boolean>(`Unable to delete Chapter`));

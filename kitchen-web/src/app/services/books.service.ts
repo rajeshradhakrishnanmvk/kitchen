@@ -61,8 +61,8 @@ export class BooksService {
       }), catchError(this.handleError<Book>(`Unable to edit Book`)));
   }
 
-  deleteBook(bookId) {
-    return this.http.delete<Boolean>(this.serviceUrl + '/' + bookId)
+  deleteBook(bookId: number) {
+    return this.http.delete<Boolean>(this.serviceUrl + '/api/Book/' + bookId)
       .toPromise()
       .then(res => res)
       .catch(this.handleError<Boolean>(`Unable to delete Book`));

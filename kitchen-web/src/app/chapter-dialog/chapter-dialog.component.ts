@@ -67,4 +67,8 @@ export class ChapterDialogComponent implements OnInit {
   submit() {
     // emppty stuff
   }
+  onDelete() {
+    this.chapterService.deleteChapter(this.chapter.id);
+    this.dialogRef.close(this.chapter);
+  }
 }

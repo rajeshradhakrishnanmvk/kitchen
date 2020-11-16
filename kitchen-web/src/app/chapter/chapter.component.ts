@@ -82,13 +82,17 @@ export class ChapterComponent implements OnInit, AfterViewInit {
   addNew() {
 
     const dialogRef = this.dialog.open(ChapterDialogComponent, {
-      data: { chapter: new Chapter(this.book.id) }
+      data: { chapter: new Chapter(this.book) }
     });
   }
-  editChapter() {
-
+  editChapter(i: number, chapter: Chapter) {
+    const dialogRef = this.dialog.open(ChapterDialogComponent, {
+      data: { chapter: chapter }
+    });
   }
-  deleteChapter() {
-
+  deleteChapter(i: number, chapter: Chapter) {
+    const dialogRef = this.dialog.open(ChapterDialogComponent, {
+      data: { chapter: chapter }
+    });
   }
 }

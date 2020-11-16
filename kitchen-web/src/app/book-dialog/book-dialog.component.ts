@@ -64,7 +64,7 @@ export class BookDialogComponent implements OnInit {
     this.book.createdBy = "FrontEnd";
     this.book.creationDate = new Date();
 
-    if (this.form.value.id == 0) {
+    if (this.book.id == 0) {
       this.bookService.addBook(this.book).subscribe(addBook => {
         this.dialogRef.close(addBook);
       },
@@ -90,5 +90,8 @@ export class BookDialogComponent implements OnInit {
         });
       this.dialogRef.close(this.book);
     }
+  }
+  onDelete() {
+    this.bookService.deleteBook(+this.form.value.id)
   }
 }

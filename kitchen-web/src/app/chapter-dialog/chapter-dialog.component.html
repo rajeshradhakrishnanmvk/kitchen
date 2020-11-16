@@ -26,8 +26,8 @@
         </div>
         <div class="form">
             <mat-form-field color="accent">
-                <input matInput #inputstate class="form-control" placeholder="SeqNo" [(ngModel)]="chapter.seqNo"
-                    name="seqno" maxlength="2" required>
+                <input matInput #inputstate class="form-control" placeholder="SeqNo" type="number"
+                    [(ngModel)]="chapter.seqNo" name="seqno" maxlength="2" required>
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                 <mat-hint align="end">{{inputstate.value?.length || 0}}/2</mat-hint>
             </mat-form-field>
@@ -42,6 +42,7 @@
 
         <div mat-dialog-actions>
             <button mat-button [type]="submit" [mat-dialog-close]="1" (click)="onSave()">Save</button>
+            <button mat-button (click)="onDelete()" [mat-dialog-close]="1">Delete</button>
             <button mat-button (click)="onClose()" tabindex="-1">Cancel</button>
         </div>
     </form>
