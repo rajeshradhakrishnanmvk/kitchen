@@ -10,7 +10,7 @@ export const environment = {
   responseType: 'id_token token',
   scope: 'openid bookservice chapterservice',
   bookservice: 'http://localhost:5002',
-  chapterservice: 'http://localhost:5003'
+  chapterservice: 'http://localhost:5001'
 };
 
 /*
