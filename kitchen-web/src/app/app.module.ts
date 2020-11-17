@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +20,7 @@ import { MatToolbarModule } from "@angular/material/toolbar"
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatDatepickerModule } from "@angular/material/datepicker"
 import { MatSelectModule } from "@angular/material/select";
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
@@ -35,6 +35,12 @@ import { BooksResolver } from './services/books.resolver';
 import { CreateBookOpenerComponent } from './create-book-opener/create-book-opener.component';
 import { ChapterDialogComponent } from './chapter-dialog/chapter-dialog.component';
 import { ChapterService } from './services/chapter.service';
+import { AppService } from './services/app.service';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+
+export function initApp(appService: AppService) {
+  return () => appService.initApp();
+}
 
 @NgModule({
   declarations: [
@@ -76,7 +82,9 @@ import { ChapterService } from './services/chapter.service';
   providers: [
     BooksService,
     BooksResolver,
-    ChapterService
+    ChapterService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true }
   ],
   bootstrap: [AppComponent],
   entryComponents: [BookDialogComponent]

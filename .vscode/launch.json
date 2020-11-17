@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "kitchen-api",
+            "name": "kitchen-idserver",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "kitchen-api-build",
-            "program": "${workspaceFolder}/kitchen-api/bin/Debug/netcoreapp3.1/kitchen-api.dll",
+            "preLaunchTask": "kitchen-book-api-build",
+            "program": "${workspaceFolder}/kitchen-book-api/bin/Debug/netcoreapp3.1/kitchen-book-api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/kitchen-api",
+            "cwd": "${workspaceFolder}/kitchen-book-api",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
@@ -19,15 +19,63 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "PORT": "8091"
             }
         },
         {
+            "name": "kitchen-book-api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kitchen-idserver-build",
+            "program": "${workspaceFolder}/kitchen-idserver/bin/Debug/netcoreapp3.1/kitchen-idserver.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/kitchen-idserver",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+            }
+        },
+        {
+            "name": "kitchen-chapter-api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kitchen-chapter-api-build",
+            "program": "${workspaceFolder}/kitchen-chapter-api/bin/Debug/netcoreapp3.1/kitchen-chapter-api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/kitchen-chapter-api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+            }
+        },
+        {
+            "name": "kitchen-web",
             "type": "chrome",
             "request": "launch",
-            "name": "kitchen-web",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}/kitchen-web"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Kitchen FSE",
+            "configurations": [
+                "kitchen-idserver",
+                "kitchen-book-api",
+                "kitchen-chapter-api",
+                "kitchen-web"
+            ],
+            "presentation": {
+                "group": "1_vscode",
+                "order": 1
+            }
         }
     ]
 }
