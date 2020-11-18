@@ -8,7 +8,7 @@ import { Chapter } from "../model/chapter";
 
 @Injectable()
 export class ChapterService {
-  private readonly serviceUrl = environment.bookservice;
+  private readonly serviceUrl = environment.chapterservice;
   //dataChange: BehaviorSubject<Chapter[]> = new BehaviorSubject<Chapter[]>([]);
   //dialogData: any;
 

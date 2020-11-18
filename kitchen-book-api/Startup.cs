@@ -44,7 +44,7 @@ namespace kitchen_api_book
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ApiUser", policy => policy.RequireClaim("microservice1"));
+                options.AddPolicy("ApiUser", policy => policy.RequireClaim("bookservice"));
             });
 
             services.AddControllers();

@@ -49,6 +49,13 @@ namespace kitchen_idserver
             .AddIdentityApiResources()
             .AddPersistedGrants();
 
+            services.ConfigureApplicationCookie(config =>
+                {
+                    config.Cookie.Name = "Identity.Cookie";
+                    config.LoginPath = "/Auth/Login";
+                    config.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+                });
+
             seedDatabase(services);
 
             builder.AddProfileService<ProfileService>();
@@ -71,6 +78,10 @@ namespace kitchen_idserver
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthorization();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax,
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
@@ -105,6 +116,15 @@ namespace kitchen_idserver
                 foreach (var api in Config.Apis)
                 {
                     repository.Add<ApiResource>(api);
+                }
+            }
+
+            
+            if (repository.All<ApiScope>().Count() == 0)
+            {
+                foreach (var scope in Config.Scopes)
+                {
+                    repository.Add<ApiScope>(scope);
                 }
             }
 

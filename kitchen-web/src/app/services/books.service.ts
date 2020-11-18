@@ -9,6 +9,7 @@ import { Book } from "../model/book";
 @Injectable()
 export class BooksService {
   private serviceUrl = environment.bookservice;
+  private readonly chapterUrl = environment.chapterservice;
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,7 @@ export class BooksService {
   }
 
   findAllBookChapters(bookId: number): Observable<Chapter[]> {
-    return this.http.get(this.serviceUrl + '/api/Chapter/GetChapter', {
+    return this.http.get(this.chapterUrl + '/api/Chapter/GetChapter', {
       params: new HttpParams()
         .set('bookId', bookId.toString())
         .set('pageNumber', "0")
@@ -36,7 +37,7 @@ export class BooksService {
   findChapters(
     bookId: number, filter = '', sortOrder = 'asc',
     pageNumber = 0, pageSize = 3): Observable<Chapter[]> {
-    return this.http.get(this.serviceUrl + '/api/Chapter/GetChapter', {
+    return this.http.get(this.chapterUrl + '/api/Chapter/GetChapter', {
       params: new HttpParams()
         .set('bookId', bookId.toString())
         .set('filter', filter)

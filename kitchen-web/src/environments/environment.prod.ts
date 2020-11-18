@@ -1,4 +1,10 @@
 export const environment = {
   production: true,
-  bookservice: "http://8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com:31112/function/kitchen-api.openfaas-fn"
+  authority: 'http://localhost:5000',
+  clientId: 'AngularClient',
+  redirectUri: 'http://localhost:4200',
+  responseType: 'id_token token',
+  scope: 'openid bookservice chapterservice',
+  bookservice: 'http://localhost:5002',
+  chapterservice: 'http://localhost:5001'
 };

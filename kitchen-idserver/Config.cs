@@ -19,10 +19,28 @@ namespace kitchen_idserver
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource("microservice1", "My Microservice #1"),
-                new ApiResource("microservice2", "My Microservice #2")
+                new ApiResource
+                {
+                    Name = "bookservice",
+                    DisplayName = "My Microservice #1",
+                    Description = "Allow the application to access Book API #1 on your behalf",
+                    Scopes = new List<string> {"bookservice","chapterservice"}
+                },
+               new ApiResource
+                {
+                    Name = "chapterservice",
+                    DisplayName = "My Microservice #1",
+                    Description = "Allow the application to access Chapter API #1 on your behalf",
+                    Scopes = new List<string> {"bookservice","chapterservice"}
+                },
             };
 
+	public static IEnumerable<ApiScope> Scopes =>
+        new ApiScope[]
+        {
+            new ApiScope("bookservice", "Access to API #1"),
+			new ApiScope("chapterservice", "Access to API #2")
+        };
 
         public static IEnumerable<Client> Clients =>
             new Client[]
@@ -36,7 +54,7 @@ namespace kitchen_idserver
                     RequireConsent = false,
                     AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris = { "http://localhost:4200" },
-                    PostLogoutRedirectUris = { "http://localhost:4200/" },
+                    PostLogoutRedirectUris = { "http://localhost:4200" },
                     AllowedCorsOrigins = { "http://localhost:4200" },
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 3600,

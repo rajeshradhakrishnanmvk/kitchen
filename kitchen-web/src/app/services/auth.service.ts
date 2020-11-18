@@ -16,6 +16,9 @@ export class AuthService {
             response_type: environment.responseType,
             scope: environment.scope
         });
+        this.userManager.getUser().then(user => {
+            this.user = user;
+        });
     }
 
     login() {
@@ -23,7 +26,9 @@ export class AuthService {
     }
 
     async completeAuthentication() {
-        this.user = await this.userManager.signinRedirectCallback();
+        return this.userManager.signinRedirectCallback().then(user => {
+            this.user = user;
+        });
     }
 
     isAuthenticated(): boolean {

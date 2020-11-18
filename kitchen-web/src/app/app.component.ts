@@ -12,11 +12,9 @@ export class AppComponent {
   title = 'kitchen-web';
 
   constructor(
-    location: Location,
     private authService: AuthService,
   ) {
-    //location.replaceState('/');
-    location.replace('/');
+
   }
 
   signout() {
