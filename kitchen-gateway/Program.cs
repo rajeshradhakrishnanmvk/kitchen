@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace kitchen_api_book
+namespace kitchen_gateway
 {
     public class Program
     {
@@ -18,28 +18,20 @@ namespace kitchen_api_book
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging =>
-                {
-                    logging.ClearProviders();
-                    logging.AddConsole();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
+               .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     var env = hostingContext.HostingEnvironment;
 
-                    config.AddJsonFile("appsettings.json", optional: true)
-                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                        .AddJsonFile("/var/openfaas/secrets/secret-book-appsettings", optional: true);
-
+                    // config.AddJsonFile("appsettings.json", optional: true)
+                    //     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                    //     .AddJsonFile($"ocelot.{env.EnvironmentName}.json", optional: false)
+                    //     .AddJsonFile("/var/openfaas/secrets/secret-gateway-appsettings", optional: true);
+                    config.AddJsonFile($"ocelot.{env.EnvironmentName}.json", optional: false);
                     config.AddEnvironmentVariables();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                        // .UseKestrel(options =>
-                        // {
-                        //     options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
-                        // });
                 });
     }
 }

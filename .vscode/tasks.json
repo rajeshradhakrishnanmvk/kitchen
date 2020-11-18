@@ -54,6 +54,24 @@
 				"reveal": "silent"
 			},
 			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "kitchen-gateway-build",
+			"command": "dotnet",
+			"type": "shell",
+			"args": [
+				"build",
+				// Ask dotnet build to generate full paths for file names.
+				"/property:GenerateFullPaths=true",
+				// Do not generate summary otherwise it leads to duplicate errors in Problems panel
+				"/consoleloggerparameters:NoSummary",
+				"${workspaceFolder}/kitchen-gateway/kitchen-gateway.csproj"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": "$msCompile"
 		}
 	]
 }

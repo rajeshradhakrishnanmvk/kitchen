@@ -56,6 +56,23 @@
             }
         },
         {
+            "name": "kitchen-gateway",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kitchen-gateway-build",
+            "program": "${workspaceFolder}/kitchen-gateway/bin/Debug/netcoreapp3.1/kitchen-gateway.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/kitchen-gateway",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+            }
+        },
+        {
             "name": "kitchen-web",
             "type": "chrome",
             "request": "launch",
@@ -70,6 +87,7 @@
                 "kitchen-idserver",
                 "kitchen-book-api",
                 "kitchen-chapter-api",
+                "kitchen-gateway"
                 //"kitchen-web"
             ],
             "presentation": {

@@ -29,7 +29,7 @@ namespace kitchen_api_chapter
 
                     config.AddJsonFile("appsettings.json", optional: true)
                         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                        .AddJsonFile("/var/openfaas/secrets/secret-appsettings", optional: true);
+                        .AddJsonFile("/var/openfaas/secrets/secret-chapter-appsetting", optional: true);
 
                     config.AddEnvironmentVariables();
                 })

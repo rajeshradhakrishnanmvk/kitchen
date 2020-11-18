@@ -8,24 +8,23 @@ import { Book } from "../model/book";
 
 @Injectable()
 export class BooksService {
-  private serviceUrl = environment.bookservice;
-  private readonly chapterUrl = environment.chapterservice;
+  private serviceUrl = environment.backend;
 
   constructor(private http: HttpClient) { }
 
   findBookById(bookId: number): Observable<Book> {
-    return this.http.get<Book>(this.serviceUrl + `/api/Book/${bookId}`);
+    return this.http.get<Book>(this.serviceUrl + `/book/${bookId}`);
   }
 
   findAllBooks(): Observable<Book[]> {
-    return this.http.get(this.serviceUrl + '/api/Book')
+    return this.http.get(this.serviceUrl + '/book')
       .pipe(
         map(res => res['payload'])
       );
   }
 
   findAllBookChapters(bookId: number): Observable<Chapter[]> {
-    return this.http.get(this.chapterUrl + '/api/Chapter/GetChapter', {
+    return this.http.get(this.serviceUrl + '/chapter/GetChapter', {
       params: new HttpParams()
         .set('bookId', bookId.toString())
         .set('pageNumber', "0")
@@ -37,7 +36,7 @@ export class BooksService {
   findChapters(
     bookId: number, filter = '', sortOrder = 'asc',
     pageNumber = 0, pageSize = 3): Observable<Chapter[]> {
-    return this.http.get(this.chapterUrl + '/api/Chapter/GetChapter', {
+    return this.http.get(this.serviceUrl + '/chapter/GetChapter', {
       params: new HttpParams()
         .set('bookId', bookId.toString())
         .set('filter', filter)
@@ -50,20 +49,20 @@ export class BooksService {
   }
 
   addBook(book: Book): Observable<Book> {
-    return this.http.post<Book>(this.serviceUrl + '/api/Book', book)
+    return this.http.post<Book>(this.serviceUrl + '/book', book)
       .pipe(tap(addBook => {
         console.log('Added Book', addBook);
       }), catchError(this.handleError<Book>(`Unable to add Book`)));
   }
   editBook(book: Book): Observable<Book> {
-    return this.http.put<Book>(this.serviceUrl + '/api/Book/' + `${book.id}`, book)
+    return this.http.put<Book>(this.serviceUrl + '/book/' + `${book.id}`, book)
       .pipe(tap(editedBook => {
         console.log('Added Book', editedBook);
       }), catchError(this.handleError<Book>(`Unable to edit Book`)));
   }
 
   deleteBook(bookId: number) {
-    return this.http.delete<Boolean>(this.serviceUrl + '/api/Book/' + bookId)
+    return this.http.delete<Boolean>(this.serviceUrl + '/book/' + bookId)
       .toPromise()
       .then(res => res)
       .catch(this.handleError<Boolean>(`Unable to delete Book`));

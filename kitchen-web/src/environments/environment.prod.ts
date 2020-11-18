@@ -1,10 +1,9 @@
 export const environment = {
   production: true,
-  authority: 'http://localhost:5000',
+  authority: 'http://8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com:31112/function/kitchen-idserver.openfaas-fn',
   clientId: 'AngularClient',
-  redirectUri: 'http://localhost:4200',
+  redirectUri: 'http://8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com:31112/function/kitchen-web.openfaas-fn',
   responseType: 'id_token token',
   scope: 'openid bookservice chapterservice',
-  bookservice: 'http://localhost:5002',
-  chapterservice: 'http://localhost:5001'
+  backend: 'http://8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com:31112/function/kitchen-gateway.openfaas-fn',
 };

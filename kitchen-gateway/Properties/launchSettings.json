@@ -1,0 +1,13 @@
+﻿{
+  "profiles": {
+    "kitchen_gateway": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "kitchengateway",
+      "applicationUrl": "http://localhost:8141",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

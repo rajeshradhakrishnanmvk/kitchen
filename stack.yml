@@ -7,13 +7,39 @@ functions:
     lang: dockerfile
     handler: ./kitchen-web
     image: 15091983/kitchen-web:latest
-  kitchen-api:
+  kitchen-idserver:
     lang: dockerfile
-    handler: ./kitchen-api
-    image: 15091983/kitchen-api:latest
+    handler: ./kitchen-idserver
+    image: 15091983/kitchen-idserver:latest
     environment:
       ASPNETCORE_ENVIRONMENT: "Production"
-      PORT: 8080
       exec_timeout: 2h
     secrets:
-      - secret-appsettings
+      - secret-idserver-appsettings 
+  kitchen-book-api:
+    lang: dockerfile
+    handler: ./kitchen-book-api
+    image: 15091983/kitchen-book-api:latest
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      exec_timeout: 2h
+    secrets:
+      - secret-book-appsettings
+  kitchen-chapter-api:
+    lang: dockerfile
+    handler: ./kitchen-chapter-api
+    image: 15091983/kitchen-chapter-api:latest
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      exec_timeout: 2h
+    secrets:
+      - secret-chapter-appsetting
+  kitchen-gateway:
+    lang: dockerfile
+    handler: ./kitchen-gateway
+    image: 15091983/kitchen-gateway:latest
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      exec_timeout: 2h
+    secrets:
+      - secret-gateway-appsettings
