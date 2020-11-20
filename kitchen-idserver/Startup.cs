@@ -12,10 +12,13 @@ using IdentityServer4.Services;
 using IdentityServer4.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Bson.Serialization.Conventions;
+
 
 namespace kitchen_idserver
 {
@@ -32,8 +35,26 @@ namespace kitchen_idserver
 
         public void ConfigureServices(IServiceCollection services)
         {
+             services.AddCors(options =>
+                {
+                    options.AddPolicy("CorsPolicy",
+                        builder => builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            //.AllowCredentials()
+                            );
+                });
             services.AddControllersWithViews();
+            // services.Configure<ForwardedHeadersOptions>(options =>
+            // {
+            //     options.ForwardedHeaders =
+            //         ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
+            //     options.KnownNetworks.Clear();
+            //     options.KnownProxies.Clear();
+            // });
 
+ 
             var builder = services.AddIdentityServer(options =>
             {
                 options.IssuerUri = Configuration.GetValue<string>("ISSUER_URI");
@@ -48,7 +69,7 @@ namespace kitchen_idserver
             .AddClients()
             .AddIdentityApiResources()
             .AddPersistedGrants();
-
+     
             services.ConfigureApplicationCookie(config =>
                 {
                     config.Cookie.Name = "Identity.Cookie";
@@ -76,6 +97,17 @@ namespace kitchen_idserver
             app.UseStaticFiles();
 
             app.UseRouting();
+            //app.UseForwardedHeaders();
+            // app.Use((context, next) =>
+            // {
+            //     context.Request.Protocol = "https";
+            //     context.Request.Host = new HostString(Configuration.GetValue<string>("IdentityServerPublicFacingUri"));
+            //     //  Only if you need it.
+            //     context.Request.PathBase = new PathString("/");
+
+            //     return next();
+            // });
+            app.UseCors("CorsPolicy");
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseCookiePolicy(new CookiePolicyOptions
@@ -97,7 +129,7 @@ namespace kitchen_idserver
 
             if (repository.All<Client>().Count() == 0)
             {
-                foreach (var client in Config.Clients)
+                foreach (var client in Config.Clients(Configuration.GetValue<string>("CLIENT_URI")))
                 {
                     repository.Add<Client>(client);
                 }

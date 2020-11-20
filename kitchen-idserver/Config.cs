@@ -42,20 +42,20 @@ namespace kitchen_idserver
 			new ApiScope("chapterservice", "Access to API #2")
         };
 
-        public static IEnumerable<Client> Clients =>
+        public static IEnumerable<Client> Clients (string url) =>
             new Client[]
             {
                 new Client
                 {
                     ClientId = "AngularClient",
                     ClientName = "Angular Client",
-                    ClientUri = "http://localhost:4200",
+                    ClientUri = url,
                     RequireClientSecret = false,
                     RequireConsent = false,
                     AllowedGrantTypes = GrantTypes.Implicit,
-                    RedirectUris = { "http://localhost:4200" },
-                    PostLogoutRedirectUris = { "http://localhost:4200" },
-                    AllowedCorsOrigins = { "http://localhost:4200" },
+                    RedirectUris = { url },
+                    PostLogoutRedirectUris = { url },
+                    AllowedCorsOrigins = { url },
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 3600,
                     AllowedScopes = { "openid", "bookservice", "chapterservice" }

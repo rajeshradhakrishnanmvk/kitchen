@@ -22,11 +22,9 @@ namespace kitchen_gateway
                 {
                     var env = hostingContext.HostingEnvironment;
 
-                    // config.AddJsonFile("appsettings.json", optional: true)
-                    //     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                    //     .AddJsonFile($"ocelot.{env.EnvironmentName}.json", optional: false)
-                    //     .AddJsonFile("/var/openfaas/secrets/secret-gateway-appsettings", optional: true);
-                    config.AddJsonFile($"ocelot.{env.EnvironmentName}.json", optional: false);
+                    config.AddJsonFile("appsettings.json", optional: true)
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile("/var/openfaas/secrets/secret-gateway-appsettings", optional: true);
                     config.AddEnvironmentVariables();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>

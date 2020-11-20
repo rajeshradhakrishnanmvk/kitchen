@@ -56,7 +56,7 @@ namespace kitchen_gateway
         }
 
        
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {

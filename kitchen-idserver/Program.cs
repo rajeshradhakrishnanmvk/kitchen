@@ -59,7 +59,8 @@ namespace kitchen_idserver
 
                     config.AddJsonFile("appsettings.json", optional: true)
                         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                        .AddJsonFile("/var/openfaas/secrets/secret-idserver-appsettings", optional: true);
+                        //.AddJsonFile("/var/openfaas/secrets/secret-idserver-appsettings", optional: true)
+                        .AddJsonFile("/var/kitchen/secrets/secret-idserver-appsettings", optional: true);
 
                     config.AddEnvironmentVariables();
                 })

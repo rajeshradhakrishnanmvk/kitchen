@@ -1,0 +1,7 @@
+apiVersion: v2
+name: kitchen-idserver
+description: Helm Chart to deploy a kitchen-idserver
+type: application
+version: 0.1.0
+appVersion: 1.0.0
+

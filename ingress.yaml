@@ -11,7 +11,11 @@ spec:
     - host: 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
       http:
         paths:
-        - path: /
+        - path: /kitchen-book
           backend:
-            serviceName: kitchen-frontend-web
-            servicePort: 80
+            serviceName: kitchen-book-api
+            servicePort: 8080
+        - path: /kitchen-chapter
+          backend:
+            serviceName: kitchen-chapter-api
+            servicePort: 8080
