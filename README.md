@@ -72,7 +72,7 @@ kubectl config use-context "PROJECT"-infra
 
 ### Setup identity server
 
-I have followed this blog (here) [https://www.blexin.com/en-US/Article/Blog/Angular-Microservices-and-Authentication-with-IdentityServer-MongoDB-and-Docker-86] to setup mongodb as backend for identity server, there were some update required besides the blog.
+I have followed this blog [here](https://www.blexin.com/en-US/Article/Blog/Angular-Microservices-and-Authentication-with-IdentityServer-MongoDB-and-Docker-86) to setup mongodb as backend for identity server, there were some update required besides the blog.
 
 ```
 >npm i oidc-client
