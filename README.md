@@ -1,11 +1,14 @@
-###Full Stack Deployment in Kubernetes
+### Full Stack Deployment in Kubernetes
 This document is a guide for my learning to deploy an angular app connecting to a set of dotnet core microservice for authentication and other services. 
 
-Prologue: If knowledge = money, I belong to the middle class, this guide is to be a mirror for my own progress toward digital transformation and sharing it, so others can become my friends.
+## Prologue: 
+If knowledge = money, I belong to the middle class, this guide is to be a mirror for my own progress toward digital transformation and sharing it, so others can become my friends.
 
-Flashback: I ended up using k8s after trying different platforms and tried to build a local environment for delivering my ideas in no time. While attempting it on my laptop with win.10 having 8GB RAM and reasonable HDD space I installed VirtaulBox and Vagrant following [Just me and Opensource channel](https://www.youtube.com/watch?v=YzaYqxW0wGs&list=PL34sAs7_26wNBRWM6BDhnonoA5FMERax0).
+## Flashback: 
+I ended up using k8s after trying different platforms and tried to build a local environment for delivering my ideas in no time. While attempting it on my laptop with win.10 having 8GB RAM and reasonable HDD space I installed VirtaulBox and Vagrant following [Just me and Opensource channel](https://www.youtube.com/watch?v=YzaYqxW0wGs&list=PL34sAs7_26wNBRWM6BDhnonoA5FMERax0).
 
-Present: I was so excited to learn all the tools that could be tried out in K8s like Istio, Traefik etc. All of a sudden the system started to slow down and came to know about k3s, k3d from the video [here](https://www.youtube.com/watch?v=-HchRyqNtkU&t=33m37s). Civo service with k3s is mind blowing to me, I don't have to take care of the infrastructure complexity anymore. Following the learn guide [here](https://www.civo.com/learn/deploying-applications-through-the-civo-kubernetes-marketplace), I did some of the experiments in CIVO, is to install a docker dotnet core web api using faas cli docker image, also trying to push a full stack app using Angular+ .net core + mongodb. I am a web application developer trying to be a [data scientist by 2025](https://rajeshradhakrishnanmvk.github.io/). I don't know whether its ambitious but I want to try. On its way, trying to experiment and create an eco system in CIVO with all the tools for my ideas having microservices, web apps, machine learning models. I hope one day I will be proud to run a production ready idea, that has revolutionized the world :-). I will create a series of blog post having most of the commands and whether its failure or success. 
+## Present: 
+I was so excited to learn all the tools that could be tried out in K8s like Istio, Traefik etc. All of a sudden the system started to slow down and came to know about k3s, k3d from the video [here](https://www.youtube.com/watch?v=-HchRyqNtkU&t=33m37s). Civo service with k3s is mind blowing to me, I don't have to take care of the infrastructure complexity anymore. Following the learn guide [here](https://www.civo.com/learn/deploying-applications-through-the-civo-kubernetes-marketplace), I did some of the experiments in CIVO, is to install a docker dotnet core web api using faas cli docker image, also trying to push a full stack app using Angular+ .net core + mongodb. I am a web application developer trying to be a [data scientist by 2025](https://rajeshradhakrishnanmvk.github.io/). I don't know whether its ambitious but I want to try. On its way, trying to experiment and create an eco system in CIVO with all the tools for my ideas having microservices, web apps, machine learning models. I hope one day I will be proud to run a production ready idea, that has revolutionized the world :-). I will create a series of blog post having most of the commands and whether its failure or success. 
 
 1.	DotCore
 2.	Angular
@@ -13,15 +16,16 @@ Present: I was so excited to learn all the tools that could be tried out in K8s 
 4.	Python
 5.	Java Spring Boot
 
-##Design:
+## Design:
 ![kitchen.png](https://github.com/rajeshradhakrishnanmvk/rajeshradhakrishnanmvk.github.io/blob/master/images/2020-11-23-Full_Stack_Deployment_in_Kuberentes/media/image1.png?raw=true)
-##Prerequisites:
+## Prerequisites:
 1.	Use WSL in windows
 2.	Install Docker, Windows Terminal
 3.	Use VS Code with Dotnet Core and Angular framework essentials
 4.	Remove <TAG> with you Docker ID
 5.	Remove <PROJECT> with your Project Name
-I followed the instructions here, following are the commands used:
+
+I followed the instructions [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig), following are the commands used:
 NOTE: Don’t forget to change the local path “K:\Kubernetes\ubuntu-wsl\Docker\wsl\data” which refers to my local path
 ---------------------
 [WSL2 install & update]
@@ -30,6 +34,8 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 [Install docker desktop and enable WSL]
+
+Note: I am doing the export import because there was no enough space in my default WSL drive
 ```
 wsl --list -v
 wsl --export docker-desktop-data "K:\Kubernetes\ubuntu-wsl\Docker\wsl\docker-desktop-data.tar"
@@ -38,11 +44,11 @@ wsl --import docker-desktop-data "K:\Kubernetes\ubuntu-wsl\Docker\wsl\data" "K:\
 ```
 ---------------------
 ## Docker Setting > Enable “use the WSL 2 based engine”
- (https://github.com/rajeshradhakrishnanmvk/rajeshradhakrishnanmvk.github.io/blob/master/images/2020-11-23-Full_Stack_Deployment_in_Kuberentes/media/image2.png)
-## Civo Setup
+ ![dockersetting.png](https://github.com/rajeshradhakrishnanmvk/rajeshradhakrishnanmvk.github.io/blob/master/images/2020-11-23-Full_Stack_Deployment_in_Kuberentes/media/image2.png)
+## 1. Civo Setup
 - Get the command line for Civo cluster, you can create a civo cluster, follow the instructions here.
 - Get Kubectl installed and working
----------------------
+
 ```
 civo kubernetes ls
 civo kubernetes config  <PROJECT> -infra --save --merge
@@ -51,12 +57,12 @@ kubectl config get-contexts
 kubectl config set-context <PROJECT> -infra
 kubectl config use-context <PROJECT> -infra
 ```
----------------------
-## Development:
+
+## 2. Development:
 - VS Code
 - Dotnet Core
----------------------
-[Setup identity server]
+
+# [Setup identity server]
 ```
 >npm i oidc-client
 >ng new angular-client
@@ -67,25 +73,28 @@ kubectl config use-context <PROJECT> -infra
 >dotnet new is4ef 
 >dotnet new is4inmem
 ```
----------------------
-3.	Dockerization
+
+## 3. Dockerization
 # Running Mongo db Locally
 ```
 docker run --rm -d -p 27017:27017 -v /civolab/lab/kitchen:/data/db mongo
 ```
-4.	Managing Secrets
+## 4. Managing Secrets
 ```
 kubectl delete secret secret-idserver-appsettings -n openfaas-fn
 kubectl create secret generic secret-idserver-appsettings --from-file=secret-appsettings=appsettings.secrets.json -n openfaas-fn
 ```
-## Deployment:
-#1.	Docker Build:
+## 5. Deployment:
+# Docker Build:
+
+```
 docker build . -f Dockerfile -t PROJECT-web:local
 docker tag kitchen-web:local <tag>/ <PROJECT>-web:v.0.2
 docker push <TAG>/ PROJECT-web:v.0.2
+```
 
-# 2. Open Faas Setup & Deploy
-# Setup OpenFaas
+# Open Faas Setup & Deploy
+
 ```
 curl -sLSf https://cli.openfaas.com | sudo sh
 export OPENFAAS_PREFIX="<tag>/"
@@ -100,13 +109,14 @@ faas-cli push -f stack.yml # Contains all the image deployment
 faas-cli deploy -f stack.idserver.yml # individual deployment
 faas-cli deploy -f stack.web.yml
 ```
-# 2. Helm Install
+# Helm Install
 ```
 helm upgrade --install <PROJECT>-frontend /<PROJECT>-web/conf/charts/<PROJECT>-ui --namespace PROJECT --set app.image=<TAG>/<PROJECT>-web:latest
 helm uninstall <PROJECT>-frontend -n <PROJECT>
 ```
-## Testing & Monitoring:
-I followed the monitoring guide (here)[https://www.civo.com/learn/monitoring-k3s-with-the-prometheus-operator-and-custom-email-alerts]
+---------------------
+### Testing & Monitoring:
+I followed the monitoring guide [here](https://www.civo.com/learn/monitoring-k3s-with-the-prometheus-operator-and-custom-email-alerts)
 
 ```
 docker run --rm -p 5000:8080 -ti  -e ASPNETCORE_ENVIRONMENT=Development kitchen-idserver:local
@@ -126,8 +136,8 @@ kubectl exec --stdin --tty <podname> -n openfaas-fn -- sh
 1.	Setting up local system – (  8GB RAM)
 2.	Dotnet Core
 3.	Angular
-    ()
+    ![Error.png](https://github.com/rajeshradhakrishnanmvk/rajeshradhakrishnanmvk.github.io/blob/master/images/2020-11-23-Full_Stack_Deployment_in_Kuberentes/media/image3.png)
 4.	IdentityServer setup
-a.	I am trying to deploy a dotnet core identityserver4 into my cluster using openfaas. When my angular client hit the pod for authentication the url resolves to mysever.openfass-fn.svc.cluster.local:8080 instead of the external url. Any idea?
+- I am trying to deploy a dotnet core identityserver4 into my cluster using openfaas. When my angular client hit the pod for authentication the url resolves to mysever.openfass-fn.svc.cluster.local:8080 instead of the external url. Any idea?
 5.	Microservice Architecture
 6.	Ployglot implementation
