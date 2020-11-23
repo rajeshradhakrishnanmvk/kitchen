@@ -6,4 +6,4 @@ functions:
   kitchen-web:
     lang: dockerfile
     handler: ./kitchen-web
-    image: 15091983/kitchen-web:latest
+    image:  15091983/kitchen-web:v.0.2
