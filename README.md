@@ -17,7 +17,7 @@ I was so excited to learn all the tools that could be tried out in K8s like Isti
 5.	Java Spring Boot
 
 ## Design:
-![kitchen.png](https://github.com/rajeshradhakrishnanmvk/rajeshradhakrishnanmvk.github.io/blob/master/images/2020-11-23-Full_Stack_Deployment_in_Kuberentes/media/image1.png?raw=true)
+!["PROJECT".png](https://github.com/rajeshradhakrishnanmvk/rajeshradhakrishnanmvk.github.io/blob/master/images/2020-11-23-Full_Stack_Deployment_in_Kuberentes/media/image1.png?raw=true)
 ## Prerequisites:
 1.	Use WSL in windows
 2.	Install Docker, Windows Terminal
@@ -88,7 +88,7 @@ I have followed this blog [here](https://www.blexin.com/en-US/Article/Blog/Angul
 ## 3. Dockerization
 ### Running Mongo db Locally
 ```
-docker run --rm -d -p 27017:27017 -v /civolab/lab/kitchen:/data/db mongo
+docker run --rm -d -p 27017:27017 -v /civolab/lab/"PROJECT":/data/db mongo
 ```
 ## 4. Managing Secrets
 ```
@@ -100,7 +100,7 @@ kubectl create secret generic secret-idserver-appsettings --from-file=secret-app
 
 ```
 docker build . -f Dockerfile -t PROJECT-web:local
-docker tag kitchen-web:local <tag>/ "PROJECT"-web:v.0.2
+docker tag "PROJECT"-web:local <tag>/ "PROJECT"-web:v.0.2
 docker push <TAG>/ PROJECT-web:v.0.2
 ```
 
@@ -132,9 +132,9 @@ helm uninstall "PROJECT"-frontend -n "PROJECT"
 I followed the monitoring guide [here](https://www.civo.com/learn/monitoring-k3s-with-the-prometheus-operator-and-custom-email-alerts)
 
 ```
-docker run --rm -p 5000:8080 -ti  -e ASPNETCORE_ENVIRONMENT=Development kitchen-idserver:local
+docker run --rm -p 5000:8080 -ti  -e ASPNETCORE_ENVIRONMENT=Development "PROJECT"-idserver:local
 
-kubectl get all -o wide -n kitchen
+kubectl get all -o wide -n "PROJECT"
 kubectl get all -o wide -n openfaas-fn
 
 kubectl port-forward svc/prometheus-operator-grafana 8080:80  -n monitoring
@@ -151,7 +151,7 @@ kubectl exec --stdin --tty <podname> -n openfaas-fn -- sh
 3.	Angular
     Error: because its MIME type ('text/pain') is not supported  stylesheet MIME type, and strict MIME checking is enabled.
     ![Error.png](https://github.com/rajeshradhakrishnanmvk/rajeshradhakrishnanmvk.github.io/blob/master/images/2020-11-23-Full_Stack_Deployment_in_Kuberentes/media/image3.png)
-    - I resolved it by adding  'base href="/function/kitchen-web.openfaas-fn/"' in index.html
+    - I resolved it by adding  'base href="/function/"PROJECT"-web.openfaas-fn/"' in index.html
 4.	IdentityServer setup
 - Q: I am trying to deploy a dotnet core identityserver4 into my cluster using openfaas. When my angular client hit the pod for authentication the url resolves to mysever.openfass-fn.svc.cluster.local:8080 instead of the external url. Any idea?
 - A: I fixed it by hosting it separately using helm and configured traefik ingress.
