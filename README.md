@@ -1,4 +1,4 @@
-### Full Stack Deployment in Kubernetes (Angular, IdentityServer4, Dotnet Core, MongoDB, CIVO)
+# Full Stack Deployment in Kubernetes (Angular, IdentityServer4, Dotnet Core, MongoDB, CIVO)
 This document is a guide for my learning to deploy an angular app connecting to a set of dotnet core microservice for authentication and other services. 
 
 ## Prologue: 
@@ -70,9 +70,9 @@ kubectl config use-context "PROJECT"-infra
    1. Create a web api project for book service
    2. Create another for chapter service
 
-# Setup identity server
+### Setup identity server
 
-I have followed this blog [here] (https://www.blexin.com/en-US/Article/Blog/Angular-Microservices-and-Authentication-with-IdentityServer-MongoDB-and-Docker-86) to setup mongodb as backend for identity server, there were some update required besides the blog.
+I have followed this blog (here) [https://www.blexin.com/en-US/Article/Blog/Angular-Microservices-and-Authentication-with-IdentityServer-MongoDB-and-Docker-86] to setup mongodb as backend for identity server, there were some update required besides the blog.
 
 ```
 >npm i oidc-client
@@ -86,7 +86,7 @@ I have followed this blog [here] (https://www.blexin.com/en-US/Article/Blog/Angu
 ```
 
 ## 3. Dockerization
-# Running Mongo db Locally
+### Running Mongo db Locally
 ```
 docker run --rm -d -p 27017:27017 -v /civolab/lab/kitchen:/data/db mongo
 ```
@@ -96,7 +96,7 @@ kubectl delete secret secret-idserver-appsettings -n openfaas-fn
 kubectl create secret generic secret-idserver-appsettings --from-file=secret-appsettings=appsettings.secrets.json -n openfaas-fn
 ```
 ## 5. Deployment:
-# Docker Build:
+#### Docker Build:
 
 ```
 docker build . -f Dockerfile -t PROJECT-web:local
