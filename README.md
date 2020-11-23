@@ -104,7 +104,7 @@ docker tag "PROJECT"-web:local <tag>/ "PROJECT"-web:v.0.2
 docker push <TAG>/ PROJECT-web:v.0.2
 ```
 
-# Open Faas Setup & Deploy
+### Open Faas Setup & Deploy
 
 ```
 curl -sLSf https://cli.openfaas.com | sudo sh
@@ -120,7 +120,7 @@ faas-cli push -f stack.yml # Contains all the image deployment
 faas-cli deploy -f stack.idserver.yml # individual deployment
 faas-cli deploy -f stack.web.yml
 ```
-# Helm Install
+### Helm Install
 I have used the helm installation for identity server 4 dotnet microservice because the open faas url was not idel to resolve the host path, if we install it using helm we can setup the ingress.
 
 ```
