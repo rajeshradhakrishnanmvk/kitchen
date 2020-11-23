@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: kitchen-ingress
+    namespace: openfaas-fn
+    annotations:
+       kubernetes.io/ingress.class: traefik
+       ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+    rules:
+    - host: 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
+      http:
+        paths:
+        - path: /api/Book
+          backend:
+            serviceName: kitchen-book-api
+            servicePort: 8080
+        - path: /api/Chapter
+          backend:
+            serviceName: kitchen-chapter-api
+            servicePort: 8080

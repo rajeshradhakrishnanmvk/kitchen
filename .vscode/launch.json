@@ -1,0 +1,99 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "kitchen-idserver",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kitchen-idserver-build",
+            "program": "${workspaceFolder}/kitchen-idserver/bin/Debug/netcoreapp3.1/kitchen-idserver.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/kitchen-idserver",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+            }
+        },
+        {
+            "name": "kitchen-book-api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kitchen-book-api-build",
+            "program": "${workspaceFolder}/kitchen-book-api/bin/Debug/netcoreapp3.1/kitchen-book-api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/kitchen-book-api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+            }
+        },
+        {
+            "name": "kitchen-chapter-api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kitchen-chapter-api-build",
+            "program": "${workspaceFolder}/kitchen-chapter-api/bin/Debug/netcoreapp3.1/kitchen-chapter-api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/kitchen-chapter-api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+            }
+        },
+        {
+            "name": "kitchen-gateway",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "kitchen-gateway-build",
+            "program": "${workspaceFolder}/kitchen-gateway/bin/Debug/netcoreapp3.1/kitchen-gateway.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/kitchen-gateway",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+            }
+        },
+        {
+            "name": "kitchen-web",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}/kitchen-web"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Kitchen FSE",
+            "configurations": [
+                "kitchen-idserver",
+                "kitchen-book-api",
+                "kitchen-chapter-api",
+                "kitchen-gateway"
+                //"kitchen-web"
+            ],
+            "presentation": {
+                "group": "1_vscode",
+                "order": 1
+            }
+        }
+    ]
+}

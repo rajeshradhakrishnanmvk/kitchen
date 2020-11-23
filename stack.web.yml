@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com:31112
+functions:
+  kitchen-web:
+    lang: dockerfile
+    handler: ./kitchen-web
+    image:  15091983/kitchen-web:v.0.2

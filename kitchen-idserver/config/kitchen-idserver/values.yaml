@@ -1,0 +1,10 @@
+
+# general app values
+team: BhadraStores
+app:
+  image: 15091983/kitchen-idserver:v.0.2
+  env:
+    PORT: 80
+    ASPNETCORE_ENVIRONMENT: Production
+  domain: 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
+  port: 80

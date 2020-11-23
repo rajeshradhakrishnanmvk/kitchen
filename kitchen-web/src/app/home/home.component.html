@@ -1,0 +1,18 @@
+<div class="books-panel">
+    <h3> All Chapters</h3>
+    <button mat-button class="mat-raised-button mat-accent" (click)="addBook(0)">
+        ADD
+    </button>
+    <mat-tab-group>
+        <mat-tab label="Poetry">
+            <book-card-list [books]="poetryChapters$ | async">
+
+            </book-card-list>
+        </mat-tab>
+        <mat-tab label="Novel">
+            <book-card-list [books]="novelChapters$ | async">
+
+            </book-card-list>
+        </mat-tab>
+    </mat-tab-group>
+</div>

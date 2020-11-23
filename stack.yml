@@ -1,0 +1,36 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com:31112
+functions:
+  kitchen-web:
+    lang: dockerfile
+    handler: ./kitchen-web
+    image: 15091983/kitchen-web:v.0.1
+  kitchen-book-api:
+    lang: dockerfile
+    handler: ./kitchen-book-api
+    image: 15091983/kitchen-book-api:v.0.1
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      exec_timeout: 2h
+    secrets:
+      - secret-book-appsettings
+  kitchen-chapter-api:
+    lang: dockerfile
+    handler: ./kitchen-chapter-api
+    image: 15091983/kitchen-chapter-api:v.0.1
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      exec_timeout: 2h
+    secrets:
+      - secret-chapter-appsetting
+  kitchen-gateway:
+    lang: dockerfile
+    handler: ./kitchen-gateway
+    image: 15091983/kitchen-gateway:v.0.1
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      exec_timeout: 2h
+    secrets:
+      - secret-gateway-appsettings
