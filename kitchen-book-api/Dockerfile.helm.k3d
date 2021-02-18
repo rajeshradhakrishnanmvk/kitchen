@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY kitchen-book-api.csproj  .
+RUN dotnet restore
+COPY . .
+RUN dotnet build "kitchen-book-api.csproj" --no-restore -c Release -o /app --no-cache /restore
+
+FROM build AS publish
+RUN dotnet publish "kitchen-book-api.csproj" --no-restore -c Release -o /app --no-cache /restore
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "kitchen-book-api.dll"]

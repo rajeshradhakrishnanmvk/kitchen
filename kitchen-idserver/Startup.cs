@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-
+using System;
 using System.Linq;
 using kitchen_idserver.Services;
 using kitchen_idserver.Storage;
@@ -17,8 +17,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using MongoDB.Bson.Serialization.Conventions;
-
+using Serilog;
 
 namespace kitchen_idserver
 {
@@ -26,15 +27,16 @@ namespace kitchen_idserver
     {
         public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
-
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Environment = environment;
             Configuration = configuration;
+             Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            
              services.AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy",
@@ -53,7 +55,10 @@ namespace kitchen_idserver
             //     options.KnownNetworks.Clear();
             //     options.KnownProxies.Clear();
             // });
+            //services.AddLogging(configure => configure.AddSerilog());
 
+             string Message = $"Identity Server method ConfigureServices call at {DateTime.UtcNow.ToLongTimeString()}";
+            Log.Information(Message);
  
             var builder = services.AddIdentityServer(options =>
             {
@@ -69,7 +74,8 @@ namespace kitchen_idserver
             .AddClients()
             .AddIdentityApiResources()
             .AddPersistedGrants();
-     
+             Message = $"Identity Server connected to Mongodb {Configuration.GetValue<string>("MONGO_CONNECTION")}";
+            Log.Information(Message);
             services.ConfigureApplicationCookie(config =>
                 {
                     config.Cookie.Name = "Identity.Cookie";
@@ -87,12 +93,14 @@ namespace kitchen_idserver
             services.AddSingleton<ICorsPolicyService, RepositoryCorsPolicyService>();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
         {
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            loggerfactory.AddSerilog();
 
             app.UseStaticFiles();
 
@@ -122,6 +130,8 @@ namespace kitchen_idserver
 
         private void seedDatabase(IServiceCollection services)
         {
+            string Message = $"Identity Server method seedDatabase call at {Configuration.GetValue<string>("MONGO_CONNECTION")}";
+            Log.Information(Message);
             configureMongoDriverIgnoreExtraElements();
 
             var sp = services.BuildServiceProvider();

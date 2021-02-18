@@ -1,0 +1,7 @@
+apiVersion: v2
+name: kitchen-book-api
+description: Helm Chart to deploy a kitchen-book-api
+type: application
+version: 0.1.0
+appVersion: 1.0.0
+

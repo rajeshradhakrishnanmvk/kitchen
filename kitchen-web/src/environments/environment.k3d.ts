@@ -4,13 +4,13 @@
 
 export const environment = {
   production: false,
-  authority: 'http://localhost:5000',
+  authority: 'http://kitchen.k3d.localhost:8080',
   clientId: 'AngularClient',
-  redirectUri: 'http://localhost:4200',
+  redirectUri: 'http://kitchen-web.k3d.localhost:8080',
   responseType: 'id_token token',
   scope: 'openid bookservice chapterservice',
-  bookService: 'http://localhost:8141',
-  chapterService: 'http://localhost:8151'
+  bookService: 'http://kitchen-book-api.k3d.localhost:8080',
+  chapterService: 'http://kitchen-chapter-api.k3d.localhost:8080'
 };
 
 /*

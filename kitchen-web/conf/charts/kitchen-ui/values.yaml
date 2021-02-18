@@ -1,9 +1,0 @@
-
-# general app values
-team: BhadraStores
-app:
-  image: 15091983/kitchen-web:latest
-  env:
-    PORT: 80
-  domain: 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
-  port: 80

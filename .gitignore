@@ -357,4 +357,4 @@ build
 Data
 raj-kitchen-civo
 raj-kitchen-civo.*
-appsettings.secrets.json
+appsettings.*.json

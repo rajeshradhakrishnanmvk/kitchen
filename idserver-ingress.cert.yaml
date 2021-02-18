@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kitchen-idserver
+    meta.helm.sh/release-namespace: kitchen
+    certmanager.k8s.io/cluster-issuer: letsencrypt.staging
+  creationTimestamp: "2020-11-20T15:43:31Z"
+  generation: 1
+  labels:
+    app: kitchen-idserver
+    app.kubernetes.io/managed-by: Helm
+    component: web
+    team: BhadraStores
+  name: kitchen-idserver-web
+  namespace: kitchen
+  resourceVersion: "496865"
+  selfLink: /apis/extensions/v1beta1/namespaces/kitchen/ingresses/kitchen-idserver-web
+  uid: 4ba39090-3073-4d63-9cfb-dbbfe56a05e7
+spec:
+  tls:
+  - hosts:
+    - 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
+    serviceName: letsencrypt.staging
+  rules:
+  - host: 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: kitchen-idserver-web
+          servicePort: 80
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - 8ee1b03c-caba-4d1b-9ff4-db3751f88b26.k8s.civo.com
+status:
+  loadBalancer:
+    ingress:
+    - ip: 91.211.155.51

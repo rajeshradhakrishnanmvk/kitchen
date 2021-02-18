@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: kitchen-ingress
+    namespace: kitchen
+    annotations:
+       kubernetes.io/ingress.class: traefik
+       ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+    rules:
+    - host: kitchen.k3d.localhost
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: kitchen-idserver
+            servicePort: 8080
+        - path: /web
+          backend:
+            serviceName: kitchen-web
+            servicePort: 8080
+        - path: /api/Book
+          backend:
+            serviceName: kitchen-book-api
+            servicePort: 8080
+        - path: /api/Chapter
+          backend:
+            serviceName: kitchen-chapter-api
+            servicePort: 8080

@@ -8,7 +8,7 @@ import { Chapter } from "../model/chapter";
 
 @Injectable()
 export class ChapterService {
-  private readonly serviceUrl = environment.backend;
+  private readonly chapterServiceUrl = environment.chapterService;
   //dataChange: BehaviorSubject<Chapter[]> = new BehaviorSubject<Chapter[]>([]);
   //dialogData: any;
 
@@ -19,20 +19,20 @@ export class ChapterService {
   // }
 
   addChapter(chapter: Chapter): Observable<Chapter> {
-    return this.http.post<Chapter>(this.serviceUrl + '/api/Chapter', chapter)
+    return this.http.post<Chapter>(this.chapterServiceUrl + '/api/Chapter', chapter)
       .pipe(tap(addChapter => {
         console.log('Added Chapter', addChapter);
       }), catchError(this.handleError<Chapter>(`Unable to add Chapter`)));
   }
   editChapter(chapter: Chapter): Observable<Chapter> {
-    return this.http.put<Chapter>(this.serviceUrl + '/api/Chapter/' + `${chapter.id}`, chapter)
+    return this.http.put<Chapter>(this.chapterServiceUrl + '/api/Chapter/' + `${chapter.id}`, chapter)
       .pipe(tap(editedChapter => {
         console.log('Added Chapter', editedChapter);
       }), catchError(this.handleError<Chapter>(`Unable to edit Chapter`)));
   }
 
   deleteChapter(chapterId) {
-    return this.http.delete<Boolean>(this.serviceUrl + '/api/Chapter/' + chapterId)
+    return this.http.delete<Boolean>(this.chapterServiceUrl + '/api/Chapter/' + chapterId)
       .toPromise()
       .then(res => res)
       .catch(this.handleError<Boolean>(`Unable to delete Chapter`));

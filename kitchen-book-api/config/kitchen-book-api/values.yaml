@@ -2,9 +2,9 @@
 # general app values
 team: BhadraStores
 app:
-  image: kitchen-idserver:local.k3d
+  image: kitchen-book-api:local.k3d
   env:
     PORT: 80
     ASPNETCORE_ENVIRONMENT: k3d
-  domain: kitchen.k3d.localhost
+  domain: kitchen-book-api.k3d.localhost
   port: 80

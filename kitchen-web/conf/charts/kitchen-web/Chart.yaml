@@ -1,6 +1,6 @@
 apiVersion: v2
-name: kitchen-ui
-description: Helm Chart to deploy a kitchen-ui
+name: kitchen-web
+description: Helm Chart to deploy a kitchen-web
 type: application
 version: 0.1.0
 appVersion: 1.0.0

@@ -12,7 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Logging;
 using kitchen_api_book.Repository;
 using kitchen_api_book.Service;
 using kitchen_api_book.Models;
@@ -66,7 +67,7 @@ namespace kitchen_api_book
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //IdentityModelEventSource.ShowPII = true; 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -85,7 +86,9 @@ namespace kitchen_api_book
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGet("/", (context) => context.Response.WriteAsync("Success"));
             });
+            
         }
     }
 }

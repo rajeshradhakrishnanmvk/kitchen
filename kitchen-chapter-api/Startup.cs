@@ -10,11 +10,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 using Swashbuckle.AspNetCore.Swagger;
 using kitchen_api_chapter.Repository;
 using kitchen_api_chapter.Service;
 using kitchen_api_chapter.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 
 namespace kitchen_api_chapter
 {
@@ -78,11 +81,12 @@ namespace kitchen_api_chapter
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Book-1 Service API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chapter-1 Service API V1");
             });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGet("/", (context) => context.Response.WriteAsync("Success"));
             });
         }
     }
