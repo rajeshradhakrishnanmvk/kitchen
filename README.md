@@ -160,112 +160,10 @@ kubectl exec --stdin --tty <podname> -n openfaas-fn -- sh
 5.	Microservice Architecture
 6.	Ployglot implementation
 
-#Kubewatch Integration
-https://github.com/bitnami-labs/kubewatch
 
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-helm show values bitnami/kubewatch > /tmp/kubewatch-values-file.yml
-helm search repo kubewatch
-helm install kubewatch bitnami/kubewatch --values kubewatch-values-file.yml
-------------------------------------------------
-
-kubewatch config add slack --channel <slack_channel> --token <slack_token>
-helm upgrade --install kubewatch bitnami/kubewatch --values=values-file.yml
-kubectl create namespace kubewatch
-kubectl create -f kubewatch-service-account.yaml
-kubectl create -f kubewatch-configmap.yaml
-kubectl create -f kubewatch.yaml
-
-kubectl delete pod kubewatch
-kubectl delete ClusterRole kubewatch  
-kubectl delete ClusterRoleBinding kubewatch 
-kubectl delete serviceaccount kubewatch 
-
-kubectl create -f kubewatch-service-account.yaml
-
-# cert-manager
-kubectl get all -o wide -n cert-manager
-kubectl get crds
-kubectl edit ing kitchen-idserver-web -n kitchen
-
-#Dapr
-wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
-dapr init -k -n microkitchen --enable-ha=true --enable-mtls=false
-dapr init -k -n microkitchen --enable-ha=true 
-helm install redis bitnami/redis
-
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-helm install redis bitnami/redis
-
-git clone [-b <dapr_version_tag>] https://github.com/dapr/quickstarts.git
-git clone -b v0.11.0 https://github.com/dapr/quickstarts.git
-
-kubectl apply -f ./deploy/redis.yaml
-
-k3d create cluster kitchen-dpr --workers 3 --server-arg '--no-deploy=traefik'
-k3d cluster create kitchen --api-port 6550 --servers 1 --agents 3 --no-lb --wait
-dapr init --kubernetes
------------------------
-root@dell:~# wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
-Your system is linux_amd64
-Installing Dapr CLI...
-
-Getting the latest Dapr CLI...
-Installing v0.11.0 Dapr CLI...
-Downloading https://github.com/dapr/cli/releases/download/v0.11.0/dapr_linux_amd64.tar.gz ...
-dapr installed into /usr/local/bin successfully.
-CLI version: 0.11.0
-Runtime version: n/a
-
-To get started with Dapr, please visit https://docs.dapr.io/getting-started/
-
------------------------
-
-
-root@dell:~# helm install redis bitnami/redis
-NAME: redis
-LAST DEPLOYED: Mon Dec  7 16:48:27 2020
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-NOTES:
-** Please be patient while the chart is being deployed **
-Redis can be accessed via port 6379 on the following DNS names from within your cluster:
-
-redis-master.default.svc.cluster.local for read/write operations
-redis-slave.default.svc.cluster.local for read-only operations
-
-
-To get your password run:
-
-    export REDIS_PASSWORD=$(kubectl get secret --namespace default redis -o jsonpath="{.data.redis-password}" | base64 --decode)
-
-To connect to your Redis server:
-
-1. Run a Redis pod that you can use as a client:
-   kubectl run --namespace default redis-client --rm --tty -i --restart='Never' \
-    --env REDIS_PASSWORD=$REDIS_PASSWORD \
-   --image docker.io/bitnami/redis:6.0.9-debian-10-r13 -- bash
-
-2. Connect using the Redis CLI:
-   redis-cli -h redis-master -a $REDIS_PASSWORD
-   redis-cli -h redis-slave -a $REDIS_PASSWORD
-
-To connect to your database from outside the cluster execute the following commands:
-
-    kubectl port-forward --namespace default svc/redis-master 6379:6379 &
-    redis-cli -h 127.0.0.1 -p 6379 -a $REDIS_PASSWORD
------------------------
-
-https://user-images.githubusercontent.com/14987186/101364324-71df3400-38c8-11eb-8447-35a30bb48a22.png
-
-#Machine Learning
-k3ai-cli.exe init --cloud civo
 # K3s Full Stack Deployment
 
+```
 docker build kitchen-idserver/ -f kitchen-idserver/Dockerfile.helm.k3d -t kitchen-idserver:local.k3d
 docker build kitchen-web/ -f kitchen-web/Dockerfile.helm.k3d -t kitchen-web:local.k3d
 docker build kitchen-chapter-api/ -f kitchen-chapter-api/Dockerfile.helm.k3d -t kitchen-chapter-api:local.k3d
@@ -283,3 +181,4 @@ helm upgrade --install kitchen-book-api /mnt/e/Kubernetes/civo/lab/kitchen/kitch
 helm upgrade --install kitchen-chapter-api /mnt/e/Kubernetes/civo/lab/kitchen/kitchen-chapter-api/config/kitchen-chapter-api --namespace kitchen --set app.image=kitchen-chapter-api:local.k3d
 helm uninstall -n kitchen kitchen-idserver kitchen-web
 helm uninstall -n kitchen kitchen-book-api kitchen-chapter-api
+```
