@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-24T11:10:13.578Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36" etag="YO2zRJY1nTax4DK2assC" version="14.4.2" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-02-24T11:26:30.808Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36" etag="IFfqE8IILIKlGm4MZs3-" version="14.4.2" type="github" pages="4">
   <diagram id="8KZP-E9XallS7RXyq-ez" name="Initial Version">
     <mxGraphModel dx="868" dy="520" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -423,8 +423,14 @@
         <mxCell id="P9qqp2QFAij75ilzaD9F-11" value="Add Trnaslated Audio to Video" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontSize=18;" vertex="1" parent="P9qqp2QFAij75ilzaD9F-1">
           <mxGeometry x="298" y="510" width="255" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="P9qqp2QFAij75ilzaD9F-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Georgia;fontSize=18;" edge="1" parent="P9qqp2QFAij75ilzaD9F-1" source="P9qqp2QFAij75ilzaD9F-12" target="P9qqp2QFAij75ilzaD9F-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="P9qqp2QFAij75ilzaD9F-12" value="Add Subtitles" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontSize=18;" vertex="1" parent="P9qqp2QFAij75ilzaD9F-1">
           <mxGeometry x="298" y="570" width="255" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="P9qqp2QFAij75ilzaD9F-23" value="Output will be posted as the next Episode" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontSize=18;" vertex="1" parent="P9qqp2QFAij75ilzaD9F-1">
+          <mxGeometry x="298" y="620" width="255" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
