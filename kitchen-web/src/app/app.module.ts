@@ -45,6 +45,7 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { ShoppingListService } from './shopping-list/shoppinglist.service';
 
 export function initApp(appService: AppService) {
   return () => appService.initApp();
@@ -99,6 +100,7 @@ export function initApp(appService: AppService) {
     BooksService,
     BooksResolver,
     ChapterService,
+    ShoppingListService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     //{ provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true }
   ],
