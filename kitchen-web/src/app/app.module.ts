@@ -37,6 +37,13 @@ import { ChapterDialogComponent } from './chapter-dialog/chapter-dialog.componen
 import { ChapterService } from './services/chapter.service';
 import { AppService } from './services/app.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { HeaderComponent } from './header/header.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
+import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 
 export function initApp(appService: AppService) {
   return () => appService.initApp();
@@ -52,6 +59,13 @@ export function initApp(appService: AppService) {
     BookDialogComponent,
     CreateBookOpenerComponent,
     ChapterDialogComponent,
+    HeaderComponent,
+    RecipesComponent,
+    RecipeListComponent,
+    RecipeDetailComponent,
+    RecipeItemComponent,
+    ShoppingListComponent,
+    ShoppingEditComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +98,7 @@ export function initApp(appService: AppService) {
     BooksResolver,
     ChapterService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true }
+    //{ provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true }
   ],
   bootstrap: [AppComponent],
   entryComponents: [BookDialogComponent]

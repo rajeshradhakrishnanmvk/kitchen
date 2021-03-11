@@ -10,14 +10,14 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'kitchen-web';
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-  ) {
-    this.router.navigateByUrl('/');
-  }
+  // constructor(
+  //   private router: Router,
+  //   private authService: AuthService,
+  // ) {
+  //   this.router.navigateByUrl('/');
+  // }
 
-  signout() {
-    this.authService.signout();
-  }
+  // signout() {
+  //   this.authService.signout();
+  // }
 }
