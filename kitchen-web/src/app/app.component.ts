@@ -9,7 +9,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'kitchen-web';
-
+  loadedFeature = 'recipe';
   // constructor(
   //   private router: Router,
   //   private authService: AuthService,
@@ -20,4 +20,8 @@ export class AppComponent {
   // signout() {
   //   this.authService.signout();
   // }
+
+  onNavigate(feature: string) {
+    this.loadedFeature = feature;
+  }
 }
