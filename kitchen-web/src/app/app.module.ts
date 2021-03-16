@@ -46,6 +46,9 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListService } from './shopping-list/shoppinglist.service';
+import { RecipeRoutingModel } from './recipe-routing.module';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 export function initApp(appService: AppService) {
   return () => appService.initApp();
@@ -68,7 +71,9 @@ export function initApp(appService: AppService) {
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    RecipeStartComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
@@ -93,8 +98,8 @@ export function initApp(appService: AppService) {
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
-    MatMomentDateModule
-
+    MatMomentDateModule,
+    RecipeRoutingModel
   ],
   providers: [
     BooksService,
