@@ -49,6 +49,7 @@ import { ShoppingListService } from './shopping-list/shoppinglist.service';
 import { RecipeRoutingModel } from './recipe-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeService } from './recipes/recipe.service';
 
 export function initApp(appService: AppService) {
   return () => appService.initApp();
@@ -106,6 +107,7 @@ export function initApp(appService: AppService) {
     BooksResolver,
     ChapterService,
     ShoppingListService,
+    RecipeService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     //{ provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true }
   ],
