@@ -108,7 +108,7 @@ export function initApp(appService: AppService) {
     ChapterService,
     ShoppingListService,
     RecipeService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     //{ provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true }
   ],
   bootstrap: [AppComponent],
