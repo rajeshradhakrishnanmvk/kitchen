@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 
-import { AuthService } from './auth.service'
+import { AuthBookService } from './auth.book..service'
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthBookService) { }
 
     canActivate(): boolean {
         if (this.authService.isAuthenticated()) {

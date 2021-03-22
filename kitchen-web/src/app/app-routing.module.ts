@@ -9,7 +9,7 @@ import { BooksResolver } from './services/books.resolver';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "books",
     component: HomeComponent
   },
   {

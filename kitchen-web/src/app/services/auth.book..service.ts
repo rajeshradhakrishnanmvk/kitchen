@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { UserManager, User } from 'oidc-client';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class AuthBookService {
 
     public user: User;
     private userManager: UserManager;
