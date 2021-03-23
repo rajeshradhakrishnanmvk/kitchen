@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 //import { AuthService } from './services/auth.service';
 import { AuthService } from './auth/auth.service';
+import { LoggingService } from './logging.service';
 
 @Component({
   selector: 'app-root',
@@ -22,10 +23,11 @@ export class AppComponent implements OnInit {
   //   this.authService.signout();
   // }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private loggingService: LoggingService) { }
 
   ngOnInit() {
     this.authService.autoLogin();
+    this.loggingService.printLog('Hello from AppComponent ngOnInit');
   }
   onNavigate(feature: string) {
     this.loadedFeature = feature;

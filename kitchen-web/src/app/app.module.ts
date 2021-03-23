@@ -38,22 +38,10 @@ import { ChapterService } from './services/chapter.service';
 import { AppService } from './services/app.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './shopping-list/shoppinglist.service';
-import { RecipeRoutingModel } from './recipe-routing.module';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipeService } from './recipes/recipe.service';
-import { AuthComponent } from './auth/auth.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { AuthInteceptorService } from './auth/auth.interceptor.service';
-import { AlertComponent } from './shared/alert/alert.component';
+import { RecipeRoutingModule } from './recipe-routing.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { LoggingService } from './logging.service';
 
 export function initApp(appService: AppService) {
   return () => appService.initApp();
@@ -69,19 +57,7 @@ export function initApp(appService: AppService) {
     BookDialogComponent,
     CreateBookOpenerComponent,
     ChapterDialogComponent,
-    HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -107,15 +83,15 @@ export function initApp(appService: AppService) {
     FormsModule,
     MatSelectModule,
     MatMomentDateModule,
-    RecipeRoutingModel
+    RecipeRoutingModule,
+    SharedModule,
+    CoreModule
   ],
   providers: [
     BooksService,
     BooksResolver,
     ChapterService,
-    ShoppingListService,
-    RecipeService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInteceptorService, multi: true }
+    LoggingService
     //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     //{ provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true }
   ],
