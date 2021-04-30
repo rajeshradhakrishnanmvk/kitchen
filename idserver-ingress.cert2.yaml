@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1 
+kind: Ingress
+metadata:
+  name:  kitchen-idserver-web
+  namespace: kitchen
+  annotations:
+    cert-manager.io/issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+  - hosts:
+    - 325eef9c-b979-40d9-b4f1-8075065d5da2.k8s.civo.com
+    secretName: kitchen-secret-id
+  rules:
+  - host: 325eef9c-b979-40d9-b4f1-8075065d5da2.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: kitchen-idserver-web
+          servicePort: 80
+        path: /

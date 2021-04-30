@@ -73,11 +73,18 @@
             }
         },
         {
-            "name": "kitchen-web",
+            "name": "kitchen-web-book",
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}/kitchen-web"
+            "webRoot": "${workspaceFolder}/kitchen-web/book"
+        },
+        {
+            "name": "kitchen-web-recipe",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}/kitchen-web/recipe"
         }
     ],
     "compounds": [
@@ -87,7 +94,7 @@
                 "kitchen-idserver",
                 "kitchen-book-api",
                 "kitchen-chapter-api",
-                "kitchen-gateway"
+                //"kitchen-gateway"
                 //"kitchen-web"
             ],
             "presentation": {

@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: letsencrypt-prod
+  namespace: kitchen
+spec:
+  acme:
+    email:  rajesh_iamhere@hotmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: kitchen-secret-issuer-account-key
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
