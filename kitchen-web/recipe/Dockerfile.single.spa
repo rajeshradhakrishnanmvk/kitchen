@@ -1,0 +1,12 @@
+### STAGE 1: Build ###
+FROM node:latest AS build
+WORKDIR /app
+COPY package*.json /app/
+RUN npm install
+COPY ./ /app/
+RUN npm run build:single-spa:recipe
+### STAGE 2: Run ###
+FROM nginx:alpine
+COPY --from=build /app/dist/recipe/ /usr/share/nginx/html
+#Copy default nginx configuration
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf

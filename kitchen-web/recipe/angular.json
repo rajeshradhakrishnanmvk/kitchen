@@ -3,19 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "recipe": {
+    "angular-material-course": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "outputPath": "dist/recipe",
+            "outputPath": "dist",
             "index": "src/index.html",
-            "main": "src/main.single-spa.ts",
-            "tsConfig": "tsconfig.app.json",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/assets",
@@ -25,10 +25,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "./extra-webpack.config.js"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -39,7 +36,7 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "none",
+              "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -62,7 +59,7 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "none",
+              "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -80,23 +77,23 @@
           }
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "recipe:build"
+            "browserTarget": "angular-material-course:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "recipe:build:production"
+              "browserTarget": "angular-material-course:build:production"
             },
             "k3d": {
-              "browserTarget": "recipe:build:k3d"
+              "browserTarget": "angular-material-course:build:k3d"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "recipe:build"
+            "browserTarget": "angular-material-course:build"
           }
         },
         "test": {
@@ -130,7 +127,7 @@
         }
       }
     },
-    "recipe-e2e": {
+    "angular-material-course-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -139,7 +136,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "recipe:serve"
+            "devServerTarget": "angular-material-course:serve"
           }
         },
         "lint": {
@@ -156,7 +153,7 @@
       }
     }
   },
-  "defaultProject": "recipe",
+  "defaultProject": "angular-material-course",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss",

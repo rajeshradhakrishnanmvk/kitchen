@@ -1,13 +1,14 @@
 ### STAGE 1: Build ###
-FROM node:latest AS build
-WORKDIR /app
-COPY package*.json /app/
+FROM node:alpine AS build
+WORKDIR '/app'
+COPY package.json .
 RUN npm install
-COPY ./ /app/
-ARG configuration=production
-RUN npm run build -- --output-path=./dist/out --configuration $configuration
+COPY . .
+RUN npm run build
+
 ### STAGE 2: Run ###
 FROM nginx:alpine
-COPY --from=build /app/dist/out/ /usr/share/nginx/html
+COPY --from=build /app/dist/ /usr/share/nginx/html
+
 #Copy default nginx configuration
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
