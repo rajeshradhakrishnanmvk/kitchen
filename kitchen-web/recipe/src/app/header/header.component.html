@@ -1,31 +1,74 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
+<nav class="navbar  navbar-expand-lg navbar-dark menu shadow fixed-top">
+    <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
-                <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                (click)="collapsed = !collapsed">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <a routerLink="/" class="navbar-brand">Bhadra Stores</a>
+            <a routerLink="/" class="navbar-brand">
+                <img src="../../assets/images/logo.png" alt="logo image">
+                Rajesh Radhakrishnan
+            </a>
         </div>
-        <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
+        <div class="navbar-collapse justify-content-end" [class.collapse]="collapsed"
+            (window:resize)="collapsed = true">
             <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a routerLink="/profile">Profile</a></li>
                 <li routerLinkActive="active" *ngIf="isAuthenticated"><a routerLink="/recipes">Recipes</a></li>
                 <li routerLinkActive="active" *ngIf="!isAuthenticated"><a routerLink="/auth">Authenticate</a></li>
                 <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="isAuthenticated">
                     <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
                 </li>
-                <li class="dropdown" appDropdown *ngIf="isAuthenticated">
-                    <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                <li class="dropdown" *ngIf="isAuthenticated">
+                    <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                        aria-expanded="false">Manage <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
                         <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
                         <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>
-
+            <button type="button" class="rounded-pill btn-rounded">+91 8157933567
+                <span>
+                    <i class="fas fa-phone-alt"></i>
+                </span>
+            </button>
         </div>
     </div>
 </nav>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark menu">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../../assets/images/logo.png" alt="logo image">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Authenticate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Shopping List</a>
+                </li>
+
+            </ul>
+            <button type="button" class="rounded-pill btn-rounded">+91 8157933567
+                <span>
+                    <i class="fas fa-phone-alt"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+</nav> -->

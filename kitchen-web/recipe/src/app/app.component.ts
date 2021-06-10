@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common'
 import { Store } from '@ngrx/store';
 import { AuthService } from './auth/auth.service';
 import { LoggingService } from './logging.service';

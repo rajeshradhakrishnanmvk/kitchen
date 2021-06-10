@@ -1,0 +1,19 @@
+@import './scss/custom';
+
+// IMPORT THE COMPONENTS
+
+@import './scss/components/animations';
+@import './scss/components/button';
+@import './scss/components/mixings';
+@import './scss/components/typography';
+
+// IMPORT THE SECTIONS
+@import './scss/sections/navbar';
+@import './scss/sections/intro-section';
+@import './scss/sections/companies';
+@import './scss/sections/services';
+@import './scss/sections/testimonials';
+@import './scss/sections/faq';
+@import './scss/sections/portfolio';
+@import './scss/sections/getstarted';
+@import './scss/sections/footer';
