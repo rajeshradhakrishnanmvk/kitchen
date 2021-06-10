@@ -3,33 +3,28 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "book": {
+    "angular-material-course": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "book",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "outputPath": "dist/book",
+            "outputPath": "dist",
             "index": "src/index.html",
-            "main": "src/main.single-spa.ts",
-            "tsConfig": "tsconfig.app.json",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/assets",
               "src/favicon.ico"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "./extra-webpack.config.js"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -40,7 +35,7 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "none",
+              "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -54,50 +49,24 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
-            },
-            "k3d": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "none",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.k3d.ts"
-                }
-              ]
             }
           }
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "book:build"
+            "browserTarget": "angular-material-course:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "book:build:production"
-            },
-            "k3d": {
-              "browserTarget": "book:build:k3d"
+              "browserTarget": "angular-material-course:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "book:build"
+            "browserTarget": "angular-material-course:build"
           }
         },
         "test": {
@@ -131,7 +100,7 @@
         }
       }
     },
-    "book-e2e": {
+    "angular-material-course-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -140,7 +109,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "book:serve"
+            "devServerTarget": "angular-material-course:serve"
           }
         },
         "lint": {
@@ -157,7 +126,7 @@
       }
     }
   },
-  "defaultProject": "book",
+  "defaultProject": "angular-material-course",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss",

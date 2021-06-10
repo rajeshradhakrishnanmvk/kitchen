@@ -23,7 +23,7 @@ import { ChapterService } from './services/chapter.service';
 import { AppService } from './services/app.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { AppMaterialModule } from './app-material.module';
-import { APP_BASE_HREF } from '@angular/common';
+
 
 export function initApp(appService: AppService) {
   return () => appService.initApp();
@@ -57,7 +57,7 @@ export function initApp(appService: AppService) {
     ChapterService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true },
-    { provide: APP_BASE_HREF, useValue: '/book/' }
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [BookDialogComponent]
