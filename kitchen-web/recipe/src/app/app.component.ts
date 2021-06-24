@@ -1,5 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common'
+// import '../../node_modules/jquery/dist/jquery.min.js';
+// import "../../node_modules/@popperjs/core/dist/umd/popper.min.js";
+// import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
+// import "../../node_modules/glightbox/dist/js/glightbox.min.js";
+// import "../../node_modules/glightbox/dist/css/glightbox.min.css";
+// import "../../src/assets/js/custom.js";
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthService } from './auth/auth.service';
 import { LoggingService } from './logging.service';
