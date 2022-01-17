@@ -10,8 +10,7 @@ const recipeRoutes: Routes = [
     //{ path: 'auth', loadChildren: './auth/auth.module#AuthModule' }
     { path: 'recipes', loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule) },
     { path: 'shopping-list', loadChildren: () => import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule) },
-    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-    { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
+    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
 
 
 ]
