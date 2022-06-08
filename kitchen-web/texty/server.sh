@@ -6,4 +6,4 @@ then
 fi
 
 #rasa run --enable-api --port $PORT
-rasa run -p $PORT -m models --credentials credentials.yml --enable-api --log-file out.log --endpoints endpoints.heroku.yml --cors "*"
+rasa run -p $PORT -m models --credentials credentials.yml --log-file out.log --cors * --enable-api --endpoints endpoints.heroku.yml
