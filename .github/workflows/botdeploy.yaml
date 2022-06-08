@@ -1,0 +1,33 @@
+name: Push Container to Heroku
+
+on: 
+  push:
+    branches:
+      - 'frontend'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Login to Heroku Container registry
+      env: 
+        working-directory: ./kitchen-web/texty
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: |
+        cd ${{ env.working-directory }} 
+        heroku container:login 
+    - name: Build and push
+      env:
+        working-directory: ./kitchen-web/texty
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: |
+        cd ${{ env.working-directory }}
+        heroku container:push -a ${{ secrets.HEROKU_USER_APP_NAME }} web 
+    - name: Release
+      env:
+        working-directory: ./kitchen-web/texty
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run:  |
+        cd ${{ env.working-directory }}
+        heroku container:release -a ${{ secrets.HEROKU_USER_APP_NAME }} web 
