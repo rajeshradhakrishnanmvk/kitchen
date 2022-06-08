@@ -11,8 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Compile css
+        env: 
+          working-directory: ./kitchen-web/profile
       - run: 'npm run compile:sass'
       - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploye to Firebase
+        env: 
+          working-directory: ./kitchen-web/profile
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KITCHEN_CF773 }}'
