@@ -19,12 +19,12 @@ jobs:
           'npm run compile:sass'
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
-        env: 
-          working-directory: ./kitchen-web/profile
-      - run: |
-          cd ${{ env.working-directory }}
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KITCHEN_CF773 }}'
           channelId: live
           projectId: kitchen-cf773
+        env: 
+          working-directory: ./kitchen-web/profile
+      - run: |
+          cd ${{ env.working-directory }}
