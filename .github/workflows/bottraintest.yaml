@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - run: |
+          cd ./kitchen-web/texty
       - name: Rasa Train and Test GitHub Action
         uses: RasaHQ/rasa-train-test-gha@main
         with:
-          workspace: kitchen-web/texty
           rasa_version: 'latest'
           data_validate: true
           rasa_train: true
@@ -24,7 +25,7 @@ jobs:
           publish_summary: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload model
-        if: github.ref == 'refs/heads/frontend'
+        if: github.ref == 'refs/heads/frontend/kitchen-web/texty'
         uses: actions/upload-artifact@master
         with:
           name: model
