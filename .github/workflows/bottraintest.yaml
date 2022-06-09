@@ -1,0 +1,31 @@
+name: Training and Testing RASA bot 'texty' on PR
+on: 
+  push:
+    branches:
+      - frontend
+    paths:
+    - 'kitchen-web/texty/**'
+jobs:
+  training-testing:
+    name: Training and Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Rasa Train and Test GitHub Action
+        uses: RasaHQ/rasa-train-test-gha@main
+        with:
+          workspace: ./kitchen-web/texty
+          rasa_version: 'latest'
+          data_validate: true
+          rasa_train: true
+          cross_validation: true
+          rasa_test: true
+          test_type: all
+          publish_summary: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload model
+        if: github.ref == 'refs/heads/frontend'
+        uses: actions/upload-artifact@master
+        with:
+          name: model
+          path: models
