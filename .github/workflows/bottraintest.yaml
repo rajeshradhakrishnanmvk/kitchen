@@ -14,7 +14,7 @@ jobs:
       - name: Rasa Train and Test GitHub Action
         uses: RasaHQ/rasa-train-test-gha@main
         with:
-          workspace: ./kitchen-web/texty
+          workspace: kitchen-web/texty
           rasa_version: 'latest'
           data_validate: true
           rasa_train: true
