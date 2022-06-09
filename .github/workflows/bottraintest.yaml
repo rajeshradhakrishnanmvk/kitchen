@@ -20,7 +20,7 @@ jobs:
           rasa_version: '3.1.2-full'
           data_validate: true
           rasa_train: true
-          cross_validation: true
+          cross_validation: false
           rasa_test: true
           test_type: all
           publish_summary: true
