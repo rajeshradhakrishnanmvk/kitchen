@@ -7,7 +7,6 @@ nlu:
     - Good day
     - Good morning
     - hello!
-    - namaste
 
 - intent: subscribe
   examples: |
