@@ -13,12 +13,16 @@ jobs:
       - name: Compile css
         uses: actions/checkout@v2
         env: 
-          PROJECT_PATH: ./kitchen-web/profile
-      - run: 'npm run compile:sass'
-      - name: Deploye to Firebase
+          working-directory: ./kitchen-web/profile
+      - run: |
+          cd ${{ env.working-directory }} 
+          'npm run compile:sass'
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         env: 
-          PROJECT_PATH: ./kitchen-web/profile
+          working-directory: ./kitchen-web/profile
+      - run: |
+          cd ${{ env.working-directory }}
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KITCHEN_CF773 }}'
