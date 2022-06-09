@@ -6,6 +6,7 @@ nlu:
     - Hallo
     - Good day
     - Good morning
+    - hello!
 
 - intent: subscribe
   examples: |
