@@ -12,6 +12,37 @@
   <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
+    <script type="text/javascript" src="https://www.google.com/jsapi">
+    </script>
+    <script type="text/javascript">
+
+      // Load the Google Transliterate API
+      google.load("elements", "1", {
+            packages: "transliteration"
+          });
+
+      function onLoad() {
+        var options = {
+            sourceLanguage:
+                google.elements.transliteration.LanguageCode.ENGLISH,
+            destinationLanguage:
+                [google.elements.transliteration.LanguageCode.MALAYALAM],
+            shortcutKey: 'ctrl+g',
+            transliterationEnabled: true
+        };
+
+        // Create an instance on TransliterationControl with the required
+        // options.
+        var control =
+            new google.elements.transliteration.TransliterationControl(options);
+
+        // Enable transliteration in the textbox with id
+        // 'transliterateTextarea'.
+        control.makeTransliteratable(['message']);
+      }
+      google.setOnLoadCallback(onLoad);
+    </script>
+
 </head>
 
 <body>
@@ -176,7 +207,7 @@
                 ഇതുവരെ ഞാൻ കണ്ടുമുട്ടിയതും പരിചയവുമുള്ള സോഫ്റ്റ്‌വെയർ സേവനങ്ങൾ എങ്ങനെ പ്രയോജനപ്പെടുത്താം എന്നുള്ള
                 വിവരങ്ങൾ ഇവിടെ പരിചയ പെടുത്തുന്നതുമാണ്.
               </p>
-              <button type="button" class="rounded-pill btn-rounded border-primary">കൂടുതൽ അറിയാൻ
+              <button type="button" class="rounded-pill btn-rounded border-primary" onclick="window.open('https://rajeshradhakrishnanmvk.github.io/','_blank')">കൂടുതൽ അറിയാൻ
                 <span>
                   <i class="fas fa-arrow-right"></i>
                 </span>
@@ -224,7 +255,7 @@
                 അല്ലെങ്കിൽ മൈക്രോസോഫ്ട് പ്ലാറ്റഫോമിൽ ഡിപ്ലോയ് ചെയാം എന്ന് വിശദമായി പ്രവർത്തികമായി 
                 എന്റെയി വെബ്സൈറ്റ് മുഘേനെ മനസിലാക്കാം .
               </p>
-              <button type="button" class="rounded-pill btn-rounded border-primary">കൂടുതൽ അറിയാൻ
+              <button type="button" class="rounded-pill btn-rounded border-primary" onclick="window.open('https://rajeshradhakrishnanmvk.github.io/','_blank')">കൂടുതൽ അറിയാൻ
                 <span>
                   <i class="fas fa-arrow-right"></i>
                 </span>
