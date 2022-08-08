@@ -15,7 +15,7 @@
   <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
 </head>
 
-<body>
+<body onload="createTable()">
   <!-- START THE NAVBAR SECTION -->
   <nav class="navbar navbar-expand-lg navbar-dark menu shadow fixed-top">
     <div class="container">
@@ -653,6 +653,25 @@
       <iframe src="https://huggingface.co/embed/rajeshradhakrishnan/malayalam-tamil/+" height="500" width="1100" title="മലയാളം to தமிழ்"></iframe>
     </div>
   </section>
+  <section id="ml" class=Contact">
+    <div class="wrapper">
+      <!-- <input id="txtMessage" type="text" placeholder="Message"> -->
+      <!-- <p id="emotions"></p> -->
+      <p>
+          <input type="button" id="addRow" value="Add New Row" onclick="addRow()" />
+      </p>
+      <div id="cont"></div>
+      <!--the container to add the table.-->
+      <br>
+      <p>
+          <button id="btnWhatsUp" type="button">Evaluate!</button>
+      </p>
+      <main>
+
+      </main>
+      <!-- <div id="contemotions"></div> -->
+  </div>
+  </section>
   <!-- START SECTION 8 - GET STARTED -->
   <section id="contact" class=Contact">
     <div class="container">
@@ -856,6 +875,9 @@
   <script src="https://unpkg.com/@rasahq/rasa-chat" type="application/javascript"></script>
   <script src="assets/js/bootstrap.bundle.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script type="text/javascript" src="https://raw.githubusercontent.com/rajeshradhakrishnanmvk/ML2025/master/ui/senti.js"></script>
+  <script type="text/javascript" src="https://raw.githubusercontent.com/rajeshradhakrishnanmvk/ML2025/master/ui/sentiApi.js"></script>
+  <script type="text/javascript" src="https://raw.githubusercontent.com/rajeshradhakrishnanmvk/ML2025/master/ui/index.js"></script>
   <script>
     ClassicEditor
         .create( document.querySelector( '#editor' ) )
